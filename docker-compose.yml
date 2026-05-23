@@ -1,0 +1,66 @@
+version: '3.9'
+
+services:
+
+  eureka:
+    build:
+      context: ./back-end/Eureka
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    restart: always
+    environment:
+      - EUREKA_HOST=eureka-server
+      - PORT=8761
+
+  gateway:
+    build:
+      context: ./back-end/Gateway
+    container_name: gateway
+    ports:
+      - "8762:8762"
+    depends_on:
+      - eureka
+    restart: always
+    environment:
+      - PORT=8762
+      - EUREKA_URL=http://eureka-server:8761/eureka
+      - HOSTNAME=gateway
+      - ALLOWED_ORIGINS=*
+
+  mysql_patrimonio:
+    build:
+      context: ./back-end/GTWPatrimonio/BD
+    container_name: mysql_patrimonio
+    ports:
+      - "3306:3306"
+    restart: always
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_spanish_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: patrimonio_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+    volumes:
+      - mysql_patrimonio_data:/var/lib/mysql
+
+  mysql_favoritos:
+    build:
+      context: ./back-end/GTWFavoritos/BD
+    container_name: mysql_favoritos
+    ports:
+      - "3307:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: favoritos_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+    volumes:
+      - mysql_favoritos_data:/var/lib/mysql
+
+volumes:
+  mysql_patrimonio_data:
+  mysql_favoritos_data:

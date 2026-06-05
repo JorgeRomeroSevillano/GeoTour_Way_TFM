@@ -21,12 +21,33 @@ services:
       - "8762:8762"
     depends_on:
       - eureka
+      - patrimonio
     restart: always
     environment:
       - PORT=8762
       - EUREKA_URL=http://eureka-server:8761/eureka
       - HOSTNAME=gateway
       - ALLOWED_ORIGINS=*
+
+  patrimonio:
+    build:
+      context: ./back-end/GTWPatrimonio/App
+    container_name: patrimonio
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka
+      - mysql_patrimonio
+    restart: always
+    environment:
+      - PORT=8080
+      - EUREKA_URL=http://eureka-server:8761/eureka
+      - HOSTNAME=patrimonio
+      - DB_HOST=mysql_patrimonio
+      - DB_PORT=3306
+      - DB_NAME=patrimonio_db
+      - DB_USER=admin
+      - DB_PASSWORD=admin123
 
   mysql_patrimonio:
     build:

@@ -1,0 +1,375 @@
+{
+  "info": {
+    "_postman_id": "a8f1dc37-7422-42d1-a4b1-bf5a4b8dbec4",
+    "name": "GTW Patrimonio via Gateway",
+    "description": "Coleccion para probar el microservicio Patrimonio a traves del Gateway. Todas las llamadas externas son POST y el campo targetMethod indica al Gateway el metodo HTTP interno que debe usar contra el microservicio.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "gateway_url",
+      "value": "http://localhost:8762"
+    },
+    {
+      "key": "service_path",
+      "value": "patrimonio"
+    },
+    {
+      "key": "patrimonio_id",
+      "value": "1"
+    },
+    {
+      "key": "provincia_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Patrimonios - listar todos",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {},\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        },
+        "description": "POST al Gateway. El Gateway transforma la peticion en GET /patrimonios dentro del microservicio."
+      }
+    },
+    {
+      "name": "Patrimonios - filtrar por id",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"id\": [\"{{patrimonio_id}}\"]\n  },\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Patrimonios - filtrar por nombre",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"nombre\": [\"alhambra\"]\n  },\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Patrimonios - filtrar por tipo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"tipo\": [\"cultural\"]\n  },\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Patrimonios - filtrar por valoracion minima",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"valoracion\": [\"8\"]\n  },\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Patrimonios - filtrar por localidad",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"localidad\": [\"Granada\"]\n  },\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Patrimonios - filtrar por provincia",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"provincia\": [\"Granada\"]\n  },\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Patrimonios - filtrar por comunidad",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"comunidad\": [\"Andalucia\"]\n  },\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Patrimonios - filtro combinado",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"tipo\": [\"cultural\"],\n    \"valoracion\": [\"8\"],\n    \"provincia\": [\"Granada\"],\n    \"comunidad\": [\"Andalucia\"]\n  },\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Patrimonio - detalle por id",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {},\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios/{{patrimonio_id}}",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios",
+            "{{patrimonio_id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Provincia - gastronomia",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {},\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/provincias/{{provincia_id}}/gastronomia",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "provincias",
+            "{{provincia_id}}",
+            "gastronomia"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Provincia - clima",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {},\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/provincias/{{provincia_id}}/clima",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "provincias",
+            "{{provincia_id}}",
+            "clima"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Patrimonio - actualizar valoracion",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"PATCH\",\n  \"queryParams\": {},\n  \"body\": {\n    \"valoracion\": 8.5\n  }\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios/{{patrimonio_id}}/valoracion",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios",
+            "{{patrimonio_id}}",
+            "valoracion"
+          ]
+        },
+        "description": "POST al Gateway. El Gateway transforma la peticion en PATCH /patrimonios/{id}/valoracion y envia body.valoracion al microservicio."
+      }
+    }
+  ]
+}

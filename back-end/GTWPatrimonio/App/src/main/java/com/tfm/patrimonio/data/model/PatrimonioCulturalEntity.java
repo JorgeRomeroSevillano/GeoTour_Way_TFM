@@ -7,7 +7,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "patrimonio_cultural")
 public class PatrimonioCulturalEntity {
@@ -25,16 +29,4 @@ public class PatrimonioCulturalEntity {
 
     @Column(nullable = false, length = 50)
     private String anio;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getEpoca() {
-        return epoca;
-    }
-
-    public String getAnio() {
-        return anio;
-    }
 }

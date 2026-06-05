@@ -11,7 +11,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "clima_provincia_estacional")
 public class ClimaProvinciaEstacionalEntity {
@@ -35,28 +39,4 @@ public class ClimaProvinciaEstacionalEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_provincia", nullable = false)
     private ProvinciaEntity provincia;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getEstacion() {
-        return estacion;
-    }
-
-    public BigDecimal getTemMin() {
-        return temMin;
-    }
-
-    public BigDecimal getTemMax() {
-        return temMax;
-    }
-
-    public BigDecimal getPrecipitacionMedia() {
-        return precipitacionMedia;
-    }
-
-    public ProvinciaEntity getProvincia() {
-        return provincia;
-    }
 }

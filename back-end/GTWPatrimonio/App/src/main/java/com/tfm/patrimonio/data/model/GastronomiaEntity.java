@@ -9,7 +9,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "gastronomia")
 public class GastronomiaEntity {
@@ -30,24 +34,4 @@ public class GastronomiaEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_provincia", nullable = false)
     private ProvinciaEntity provincia;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getUrlImagen() {
-        return urlImagen;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public ProvinciaEntity getProvincia() {
-        return provincia;
-    }
 }

@@ -23,7 +23,10 @@ import com.tfm.patrimonio.data.repository.PatrimonioRepository;
 import com.tfm.patrimonio.data.repository.ProvinciaRepository;
 import com.tfm.patrimonio.data.utils.PatrimonioMapper;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class PatrimonioService {
 
     private static final BigDecimal PESO_VALOR_ANTERIOR = new BigDecimal("0.90");
@@ -37,21 +40,6 @@ public class PatrimonioService {
     private final ProvinciaRepository provinciaRepository;
     private final GastronomiaRepository gastronomiaRepository;
     private final ClimaProvinciaEstacionalRepository climaRepository;
-
-    public PatrimonioService(
-            PatrimonioRepository patrimonioRepository,
-            PatrimonioCulturalRepository patrimonioCulturalRepository,
-            PatrimonioNaturalRepository patrimonioNaturalRepository,
-            ProvinciaRepository provinciaRepository,
-            GastronomiaRepository gastronomiaRepository,
-            ClimaProvinciaEstacionalRepository climaRepository) {
-        this.patrimonioRepository = patrimonioRepository;
-        this.patrimonioCulturalRepository = patrimonioCulturalRepository;
-        this.patrimonioNaturalRepository = patrimonioNaturalRepository;
-        this.provinciaRepository = provinciaRepository;
-        this.gastronomiaRepository = gastronomiaRepository;
-        this.climaRepository = climaRepository;
-    }
 
     @Transactional(readOnly = true)
     public List<PatrimonioGeneralResponse> getPatrimonios(

@@ -19,15 +19,14 @@ import com.tfm.patrimonio.controller.model.PatrimonioGeneralResponse;
 import com.tfm.patrimonio.controller.model.ValoracionPatchRequest;
 import com.tfm.patrimonio.service.PatrimonioService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping
+@RequiredArgsConstructor
 public class PatrimonioController {
 
     private final PatrimonioService patrimonioService;
-
-    public PatrimonioController(PatrimonioService patrimonioService) {
-        this.patrimonioService = patrimonioService;
-    }
 
     @GetMapping("/patrimonios")
     public ResponseEntity<List<PatrimonioGeneralResponse>> getPatrimonios(

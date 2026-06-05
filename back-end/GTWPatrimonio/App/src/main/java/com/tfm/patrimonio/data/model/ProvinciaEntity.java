@@ -6,7 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "provincia")
 public class ProvinciaEntity {
@@ -20,16 +24,4 @@ public class ProvinciaEntity {
 
     @Column(nullable = false, length = 50)
     private String comunidad;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getComunidad() {
-        return comunidad;
-    }
 }

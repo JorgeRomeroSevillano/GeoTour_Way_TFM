@@ -11,7 +11,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "patrimonio")
 public class PatrimonioEntity {
@@ -50,52 +54,4 @@ public class PatrimonioEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_provincia", nullable = false)
     private ProvinciaEntity provincia;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public String getUrlImagen() {
-        return urlImagen;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public BigDecimal getValoracion() {
-        return valoracion;
-    }
-
-    public void setValoracion(BigDecimal valoracion) {
-        this.valoracion = valoracion;
-    }
-
-    public String getLocalidad() {
-        return localidad;
-    }
-
-    public String getCodIne() {
-        return codIne;
-    }
-
-    public BigDecimal getLatitud() {
-        return latitud;
-    }
-
-    public BigDecimal getLongitud() {
-        return longitud;
-    }
-
-    public ProvinciaEntity getProvincia() {
-        return provincia;
-    }
 }

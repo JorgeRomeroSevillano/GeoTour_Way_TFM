@@ -9,7 +9,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "patrimonio_natural")
 public class PatrimonioNaturalEntity {
@@ -27,16 +31,4 @@ public class PatrimonioNaturalEntity {
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal extension;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getEcosistema() {
-        return ecosistema;
-    }
-
-    public BigDecimal getExtension() {
-        return extension;
-    }
 }

@@ -1665,7 +1665,7 @@ VALUES
 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/11082012-_DSC0263.jpg/1280px-11082012-_DSC0263.jpg', 'cultural', 7.80, 'Poio', '36041', 37, 42.4336, -8.7052),
 
 ('Palacio Real de Madrid',
-'El Palacio Real de Madrid es la residencia oficial de la monarquía española para actos institucionales. Construido en el siglo XVIII sobre el antiguo Alcázar, destaca por sus salones decorados, colecciones artísticas y grandes dimensiones. Es uno de los palacios reales más grandes de Europa occidental y símbolo histórico del poder de la Corona española.',
+'El Palacio Real de Madrid es la residencia oficial de la monarquía española para actos institucionales. Construido en el siglo XVIII sobre el antiguo Alcázar, destaca por sus salones decorados, colecciones artísticas y grandes dimensiones. Es uno de los palacios reales más grandes de Europa occidental y símbolo histórico del poder de la Corona española. Frente a él se encuentra la Catedral de la Almudena, que combina estilos neogótico y neoclásico, y es el templo principal de la ciudad.',
 'https://images.pexels.com/photos/37222799/pexels-photo-37222799.jpeg', 'cultural', 10.00, 'Madrid', '28079', 31, 40.418, -3.7143),
 
 ('Museo del Prado',

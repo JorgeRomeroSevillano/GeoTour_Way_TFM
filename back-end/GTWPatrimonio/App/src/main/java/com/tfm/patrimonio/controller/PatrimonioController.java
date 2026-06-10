@@ -1,6 +1,5 @@
 package com.tfm.patrimonio.controller;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -30,21 +29,21 @@ public class PatrimonioController {
 
     @GetMapping("/patrimonios")
     public ResponseEntity<List<PatrimonioGeneralResponse>> getPatrimonios(
-            @RequestParam(required = false) Integer id,
-            @RequestParam(required = false) String nombre,
-            @RequestParam(required = false) String tipo,
-            @RequestParam(required = false) BigDecimal valoracion,
-            @RequestParam(required = false) String localidad,
-            @RequestParam(required = false) String provincia,
-            @RequestParam(required = false) String comunidad) {
+            @RequestParam(required = false) List<String> ids,
+            @RequestParam(required = false) List<String> nombre,
+            @RequestParam(required = false) List<String> tipo,
+            @RequestParam(required = false) List<String> valoracion,
+            @RequestParam(required = false) List<String> localidades,
+            @RequestParam(required = false) List<String> provincias,
+            @RequestParam(required = false) List<String> comunidades) {
         return ResponseEntity.ok(patrimonioService.getPatrimonios(
-                id,
+                ids,
                 nombre,
                 tipo,
                 valoracion,
-                localidad,
-                provincia,
-                comunidad));
+                localidades,
+                provincias,
+                comunidades));
     }
 
     @GetMapping("/patrimonios/{id}")

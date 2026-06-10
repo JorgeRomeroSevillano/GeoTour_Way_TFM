@@ -22,6 +22,7 @@ services:
     depends_on:
       - eureka
       - patrimonio
+      - favoritos
     restart: always
     environment:
       - PORT=8762
@@ -48,6 +49,28 @@ services:
       - DB_NAME=patrimonio_db
       - DB_USER=admin
       - DB_PASSWORD=admin123
+
+  favoritos:
+    build:
+      context: ./back-end/GTWFavoritos/App
+    container_name: favoritos
+    ports:
+      - "8081:8080"
+    depends_on:
+      - eureka
+      - mysql_favoritos
+      - patrimonio
+    restart: always
+    environment:
+      - PORT=8080
+      - EUREKA_URL=http://eureka-server:8761/eureka
+      - HOSTNAME=favoritos
+      - DB_HOST=mysql_favoritos
+      - DB_PORT=3306
+      - DB_NAME=favoritos_db
+      - DB_USER=admin
+      - DB_PASSWORD=admin123
+      - PATRIMONIO_URL=http://patrimonio:8080
 
   mysql_patrimonio:
     build:

@@ -52,7 +52,7 @@
       }
     },
     {
-      "name": "Patrimonios - filtrar por id",
+      "name": "Patrimonios - filtro multiple por ids",
       "request": {
         "method": "POST",
         "header": [
@@ -63,7 +63,34 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"id\": [\"{{patrimonio_id}}\"]\n  },\n  \"body\": null\n}"
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"ids\": [\"1,2\"]\n  },\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        },
+        "description": "Permite pedir varios patrimonios por id en una sola llamada."
+      }
+    },
+    {
+      "name": "Patrimonios - filtrar por un id",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"ids\": [\"{{patrimonio_id}}\"]\n  },\n  \"body\": null\n}"
         },
         "url": {
           "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
@@ -156,7 +183,7 @@
       }
     },
     {
-      "name": "Patrimonios - filtrar por localidad",
+      "name": "Patrimonios - filtrar por una localidad",
       "request": {
         "method": "POST",
         "header": [
@@ -167,7 +194,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"localidad\": [\"Granada\"]\n  },\n  \"body\": null\n}"
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"localidades\": [\"Granada\"]\n  },\n  \"body\": null\n}"
         },
         "url": {
           "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
@@ -182,7 +209,7 @@
       }
     },
     {
-      "name": "Patrimonios - filtrar por provincia",
+      "name": "Patrimonios - filtrar por una provincia",
       "request": {
         "method": "POST",
         "header": [
@@ -193,7 +220,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"provincia\": [\"Granada\"]\n  },\n  \"body\": null\n}"
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"provincias\": [\"Granada\"]\n  },\n  \"body\": null\n}"
         },
         "url": {
           "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
@@ -208,7 +235,7 @@
       }
     },
     {
-      "name": "Patrimonios - filtrar por comunidad",
+      "name": "Patrimonios - filtrar por una comunidad",
       "request": {
         "method": "POST",
         "header": [
@@ -219,7 +246,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"comunidad\": [\"Andalucia\"]\n  },\n  \"body\": null\n}"
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"comunidades\": [\"Andaluc\"]\n  },\n  \"body\": null\n}"
         },
         "url": {
           "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
@@ -231,6 +258,85 @@
             "patrimonios"
           ]
         }
+      }
+    },
+    {
+      "name": "Patrimonios - filtro multiple por localidades",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"localidades\": [\"Granada,Sevilla\"]\n  },\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Patrimonios - filtro multiple por provincias",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"provincias\": [\"Granada,Sevilla\"]\n  },\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Patrimonios - filtro multiple por comunidades",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"comunidades\": [\"Andaluc,Castilla\"]\n  },\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/patrimonios",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "patrimonios"
+          ]
+        },
+        "description": "Busca comunidades que contengan cualquiera de los textos indicados."
       }
     },
     {
@@ -245,7 +351,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"tipo\": [\"cultural\"],\n    \"valoracion\": [\"8\"],\n    \"provincia\": [\"Granada\"],\n    \"comunidad\": [\"Andalucia\"]\n  },\n  \"body\": null\n}"
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {\n    \"tipo\": [\"cultural\"],\n    \"valoracion\": [\"8\"],\n    \"provincias\": [\"Granada,Sevilla\"],\n    \"comunidades\": [\"Andaluc\"]\n  },\n  \"body\": null\n}"
         },
         "url": {
           "raw": "{{gateway_url}}/{{service_path}}/patrimonios",

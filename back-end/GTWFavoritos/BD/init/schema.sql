@@ -5,6 +5,6 @@
 -- =========================================
 CREATE TABLE favoritos (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_patrimonio INT NOT NULL
+    id_patrimonio INT NOT NULL UNIQUE
 );
 

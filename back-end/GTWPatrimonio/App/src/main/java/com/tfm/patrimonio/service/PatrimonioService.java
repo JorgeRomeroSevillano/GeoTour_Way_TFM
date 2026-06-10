@@ -3,7 +3,10 @@ package com.tfm.patrimonio.service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.Locale;
 
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,21 +46,27 @@ public class PatrimonioService {
 
     @Transactional(readOnly = true)
     public List<PatrimonioGeneralResponse> getPatrimonios(
-            Integer id,
-            String nombre,
-            String tipo,
-            BigDecimal valoracion,
-            String localidad,
-            String provincia,
-            String comunidad) {
-        return patrimonioRepository.findByFilters(
-                        id,
-                        clean(nombre),
-                        clean(tipo),
-                        valoracion,
-                        clean(localidad),
-                        clean(provincia),
-                        clean(comunidad))
+            List<String> ids,
+            List<String> nombre,
+            List<String> tipo,
+            List<String> valoracion,
+            List<String> localidades,
+            List<String> provincias,
+            List<String> comunidades) {
+        Specification<PatrimonioEntity> filtros = buildSpecification(java.util.Arrays.asList(
+                inIds(parseIntegers(ids)),
+                likeValue("nombre", firstCleanValue(nombre)),
+                equalLowercase("tipo", firstCleanValue(tipo)),
+                greaterThanOrEqualTo("valoracion", firstBigDecimal(valoracion)),
+                likeAny("localidad", cleanValues(localidades)),
+                likeAnyProvincia("nombre", cleanValues(provincias)),
+                likeAnyProvincia("comunidad", cleanValues(comunidades))));
+
+        List<PatrimonioEntity> patrimonios = filtros == null
+                ? patrimonioRepository.findAll(Sort.by("nombre"))
+                : patrimonioRepository.findAll(filtros, Sort.by("nombre"));
+
+        return patrimonios
                 .stream()
                 .map(PatrimonioMapper::toGeneralResponse)
                 .toList();
@@ -131,10 +140,131 @@ public class PatrimonioService {
                 .orElseThrow(() -> new ResourceNotFoundException("No existe provincia con id " + id));
     }
 
-    private static String clean(String value) {
-        if (value == null || value.isBlank()) {
+    private static Specification<PatrimonioEntity> inIds(List<Integer> values) {
+        if (values == null) {
             return null;
         }
-        return value.trim();
+        return (root, query, criteriaBuilder) -> root.get("id").in(values);
+    }
+
+    private static Specification<PatrimonioEntity> greaterThanOrEqualTo(String field, BigDecimal value) {
+        if (value == null) {
+            return null;
+        }
+        return (root, query, criteriaBuilder) -> criteriaBuilder.greaterThanOrEqualTo(root.get(field), value);
+    }
+
+    private static Specification<PatrimonioEntity> equalLowercase(String field, String value) {
+        if (value == null) {
+            return null;
+        }
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(criteriaBuilder.lower(root.get(field)), value);
+    }
+
+    private static Specification<PatrimonioEntity> likeValue(String field, String value) {
+        if (value == null) {
+            return null;
+        }
+        return (root, query, criteriaBuilder) -> criteriaBuilder.like(
+                criteriaBuilder.lower(root.get(field)),
+                "%" + value + "%");
+    }
+
+    private static Specification<PatrimonioEntity> likeAny(String field, List<String> values) {
+        if (values == null) {
+            return null;
+        }
+        return (root, query, criteriaBuilder) -> criteriaBuilder.or(values.stream()
+                .map(value -> criteriaBuilder.like(criteriaBuilder.lower(root.get(field)), "%" + value + "%"))
+                .toArray(jakarta.persistence.criteria.Predicate[]::new));
+    }
+
+    private static Specification<PatrimonioEntity> likeAnyProvincia(String field, List<String> values) {
+        if (values == null) {
+            return null;
+        }
+        return (root, query, criteriaBuilder) -> criteriaBuilder.or(values.stream()
+                .map(value -> criteriaBuilder.like(
+                        criteriaBuilder.lower(root.get("provincia").get(field)),
+                        "%" + value + "%"))
+                .toArray(jakarta.persistence.criteria.Predicate[]::new));
+    }
+
+    private static List<String> cleanValues(List<String> values) {
+        values = splitCsv(values);
+        if (values == null) {
+            return null;
+        }
+        List<String> cleanedValues = values.stream()
+                .filter(value -> !value.isBlank())
+                .map(value -> value.trim().toLowerCase(Locale.ROOT))
+                .toList();
+        return cleanedValues.isEmpty() ? null : cleanedValues;
+    }
+
+    private static List<Integer> parseIntegers(List<String> values) {
+        values = splitCsv(values);
+        if (values == null) {
+            return null;
+        }
+        return values.stream()
+                .map(String::trim)
+                .filter(value -> !value.isBlank())
+                .map(Integer::valueOf)
+                .toList();
+    }
+
+    private static List<BigDecimal> parseBigDecimals(List<String> values) {
+        values = splitCsv(values);
+        if (values == null) {
+            return null;
+        }
+        return values.stream()
+                .map(String::trim)
+                .filter(value -> !value.isBlank())
+                .map(BigDecimal::new)
+                .toList();
+    }
+
+    private static String firstCleanValue(List<String> values) {
+        values = cleanValues(values);
+        if (values == null) {
+            return null;
+        }
+        return values.getFirst();
+    }
+
+    private static BigDecimal firstBigDecimal(List<String> values) {
+        List<BigDecimal> parsedValues = parseBigDecimals(values);
+        if (parsedValues == null) {
+            return null;
+        }
+        return parsedValues.getFirst();
+    }
+
+    private static List<String> splitCsv(List<String> values) {
+        if (values == null) {
+            return null;
+        }
+        List<String> splitValues = values.stream()
+                .flatMap(value -> java.util.Arrays.stream(value.split(",")))
+                .map(String::trim)
+                .filter(value -> !value.isBlank())
+                .toList();
+        return splitValues.isEmpty() ? null : splitValues;
+    }
+
+    private static Specification<PatrimonioEntity> buildSpecification(
+            List<Specification<PatrimonioEntity>> specifications) {
+        Specification<PatrimonioEntity> result = null;
+
+        for (Specification<PatrimonioEntity> specification : specifications) {
+            if (specification == null) {
+                continue;
+            }
+            result = result == null ? specification : result.and(specification);
+        }
+
+        return result;
     }
 }

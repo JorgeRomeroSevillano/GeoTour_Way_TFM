@@ -1,0 +1,131 @@
+{
+  "info": {
+    "_postman_id": "85a8dcbb-24c2-41b3-914a-615b9480c0c2",
+    "name": "GTW Favoritos via Gateway",
+    "description": "Coleccion para probar el microservicio Favoritos a traves del Gateway. Todas las llamadas externas son POST y targetMethod indica el metodo interno que debe usar el Gateway.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "gateway_url",
+      "value": "http://localhost:8762"
+    },
+    {
+      "key": "service_path",
+      "value": "favoritos"
+    },
+    {
+      "key": "id_patrimonio",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Favoritos - listar ids",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {},\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/favoritos",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "favoritos"
+          ]
+        },
+        "description": "Devuelve la lista de ids de patrimonio guardados como favoritos."
+      }
+    },
+    {
+      "name": "Favoritos - anadir id patrimonio",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"POST\",\n  \"queryParams\": {},\n  \"body\": {\n    \"idPatrimonio\": {{id_patrimonio}}\n  }\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/favoritos",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "favoritos"
+          ]
+        },
+        "description": "Antes de guardar, Favoritos consulta Patrimonio con GET /patrimonios?ids={idPatrimonio}."
+      }
+    },
+    {
+      "name": "Favoritos - eliminar id patrimonio",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"DELETE\",\n  \"queryParams\": {},\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/favoritos/{{id_patrimonio}}",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "favoritos",
+            "{{id_patrimonio}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Favoritos - eliminar todos",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"DELETE\",\n  \"queryParams\": {},\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/favoritos",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "favoritos"
+          ]
+        }
+      }
+    }
+  ]
+}

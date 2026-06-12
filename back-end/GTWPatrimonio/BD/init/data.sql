@@ -1850,7 +1850,15 @@ VALUES
 
 ('Castillo de Bellver',
 'El Castillo de Bellver es una fortaleza gótica situada sobre una colina en Palma de Mallorca. Construido en el siglo XIV, es uno de los pocos castillos de planta circular de Europa y ofrece vistas panorámicas de la bahía de Palma.',
-'https://upload.wikimedia.org/wikipedia/commons/8/83/Castillo_de_Bellver.jpg', 'cultural', 8.80, 'Palma', '07040', 24, 39.5638, 2.6193);
+'https://upload.wikimedia.org/wikipedia/commons/8/83/Castillo_de_Bellver.jpg', 'cultural', 8.80, 'Palma', '07040', 24, 39.5638, 2.6193),
+
+('Catedral de la Almudena',
+'La Catedral de Santa María la Real de la Almudena es el principal templo católico de Madrid. Situada frente al Palacio Real, combina elementos neoclásicos, neogóticos y neorrománicos debido a su larga construcción entre los siglos XIX y XX. Su cúpula, su cripta y su relación con la historia contemporánea de la capital la convierten en uno de los monumentos religiosos más reconocibles de la ciudad.',
+'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Almudena_2022_-_overview.jpg/1280px-Almudena_2022_-_overview.jpg', 'cultural', 8.60, 'Madrid', '28079', 31, 40.4156, -3.7145),
+
+('Monasterio de Montserrat',
+'El Monasterio de Montserrat es uno de los grandes centros espirituales y culturales de Cataluña. Situado en la montaña de Montserrat, alberga la venerada imagen de la Virgen de Montserrat y una comunidad benedictina con siglos de historia. Su entorno rocoso, su patrimonio artístico y su importancia religiosa lo convierten en un lugar emblemático del paisaje catalán.',
+'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Montserrat_Natural_Park_4.jpg/1280px-Montserrat_Natural_Park_4.jpg', 'cultural', 9.20, 'Monistrol de Montserrat', '08127', 9, 41.5933, 1.8372);
 
 INSERT INTO patrimonio_natural (id, ecosistema, extension)
 VALUES
@@ -2027,4 +2035,6 @@ VALUES
 (168, 'Urbano histórico', 'Siglo XV'),
 (169, 'Neoclásico', 'Siglo XVIII'),
 (170, 'Paisajismo histórico', 'Siglo XVII'),
-(171, 'Gótico mallorquín', 'Siglo XIV');
+(171, 'Gótico mallorquín', 'Siglo XIV'),
+(172, 'Neogótico-neorrománico', 'Siglo XIX-XX'),
+(173, 'Románico-gótico', 'Siglo XI-XVI');

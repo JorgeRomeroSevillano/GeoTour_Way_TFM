@@ -10,7 +10,7 @@ function Landing() {
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
       navigate('/home')
-    }, 5000)
+    }, 10000)
 
     return () => window.clearTimeout(timeoutId)
   }, [navigate])

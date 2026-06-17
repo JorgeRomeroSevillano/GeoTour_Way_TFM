@@ -1,0 +1,5 @@
+.home {
+  flex: 1;
+  min-height: calc(100svh - 54px);
+  background: #f6f6f3;
+}

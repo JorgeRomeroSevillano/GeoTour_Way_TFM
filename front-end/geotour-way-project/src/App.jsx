@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/footer/Footer.jsx'
-import Home from './pages/Home.jsx'
-import Landing from './pages/Landing.jsx'
-import NotFound from './pages/NotFound.jsx'
+import Home from './views/Home.jsx'
+import Landing from './views/Landing.jsx'
+import NotFound from './views/NotFound.jsx'
 import './App.css'
 
 function Layout({ children }) {

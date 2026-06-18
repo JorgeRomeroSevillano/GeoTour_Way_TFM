@@ -1,0 +1,25 @@
+.home__pagination {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 0 0;
+}
+
+.home__page-button {
+  min-width: 22px;
+  height: 24px;
+  padding: 0 3px;
+  color: #171715;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 900;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.home__page-button--active {
+  color: #245846;
+}

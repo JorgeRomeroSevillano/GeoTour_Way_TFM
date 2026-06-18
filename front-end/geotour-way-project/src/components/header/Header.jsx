@@ -20,13 +20,26 @@ function Header() {
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false)
 
   useEffect(() => {
-    getFavoritos()
+    function loadFavouriteCount() {
+      getFavoritos()
       .then((response) => {
         setFavoriteCount(response.idsPatrimonio?.length ?? 0)
       })
       .catch(() => {
         setFavoriteCount(0)
       })
+    }
+
+    function handleFavouritesChanged(event) {
+      setFavoriteCount(event.detail?.count ?? 0)
+    }
+
+    loadFavouriteCount()
+    window.addEventListener('favourites:changed', handleFavouritesChanged)
+
+    return () => {
+      window.removeEventListener('favourites:changed', handleFavouritesChanged)
+    }
   }, [])
 
   function handleLanguageChange(nextLanguage) {

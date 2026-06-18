@@ -13,10 +13,41 @@
     "action": "Explorar destinos"
   },
   "home": {
-    "label": "Inicio"
+    "label": "Inicio",
+    "title": "Patrimonio de España",
+    "subtitle": "Explora diferentes destinos",
+    "searchPlaceholder": "Buscar",
+    "results": "resultados",
+    "filters": "Filtros",
+    "filtersHelp": "Aplica filtros para encontrar los lugares que buscas",
+    "closeFilters": "Cerrar filtros",
+    "openFilters": "Abrir filtros",
+    "clearFilters": "Borrar filtros",
+    "applyFilters": "Aplicar filtros",
+    "sortBy": "Ordenar",
+    "sortName": "Nombre",
+    "sortRating": "Valoración",
+    "sortProvince": "Provincia",
+    "type": "Tipo",
+    "minimumRating": "Valoración mínima",
+    "localities": "Localidades",
+    "provinces": "Provincias",
+    "communities": "Comunidades",
+    "filterSearchPlaceholder": "Buscar opción",
+    "noFilterOptions": "Sin opciones",
+    "addFavourite": "Añadir a favoritos",
+    "removeFavourite": "Quitar de favoritos",
+    "noResultsTitle": "No hay patrimonio visible disponible",
+    "noResults": "Prueba a borrar filtros o cambiar la búsqueda para volver a ver destinos.",
+    "pagination": "Paginación",
+    "previousPages": "Páginas anteriores",
+    "nextPages": "Páginas siguientes"
   },
   "favourites": {
     "label": "Favoritos"
+  },
+  "heritageDetail": {
+    "label": "Detalle de patrimonio"
   },
   "notFound": {
     "label": "Página no encontrada",

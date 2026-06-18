@@ -3,6 +3,7 @@ import Footer from './components/footer/Footer.jsx'
 import Header from './components/header/Header.jsx'
 import LanguageProvider from './provider/LanguageProvider.jsx'
 import Favourites from './views/Favourites.jsx'
+import HeritageDetail from './views/HeritageDetail.jsx'
 import Home from './views/Home.jsx'
 import Landing from './views/Landing.jsx'
 import NotFound from './views/NotFound.jsx'
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<Layout><Landing /></Layout>} />
           <Route path="/home" element={<Layout showHeader><Home /></Layout>} />
           <Route path="/favourites" element={<Layout showHeader><Favourites /></Layout>} />
+          <Route path="/heritage/:id" element={<Layout showHeader><HeritageDetail /></Layout>} />
           <Route path="*" element={<Layout><NotFound /></Layout>} />
         </Routes>
       </BrowserRouter>

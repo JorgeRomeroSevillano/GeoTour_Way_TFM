@@ -13,10 +13,41 @@
     "action": "Explore destinations"
   },
   "home": {
-    "label": "Home"
+    "label": "Home",
+    "title": "Heritage of Spain",
+    "subtitle": "Explore different destinations",
+    "searchPlaceholder": "Search",
+    "results": "results",
+    "filters": "Filters",
+    "filtersHelp": "Apply filters to find the places you are looking for",
+    "closeFilters": "Close filters",
+    "openFilters": "Open filters",
+    "clearFilters": "Clear filters",
+    "applyFilters": "Apply filters",
+    "sortBy": "Sort",
+    "sortName": "Name",
+    "sortRating": "Rating",
+    "sortProvince": "Province",
+    "type": "Type",
+    "minimumRating": "Minimum rating",
+    "localities": "Localities",
+    "provinces": "Provinces",
+    "communities": "Communities",
+    "filterSearchPlaceholder": "Search option",
+    "noFilterOptions": "No options",
+    "addFavourite": "Add to favourites",
+    "removeFavourite": "Remove from favourites",
+    "noResultsTitle": "No visible heritage is available",
+    "noResults": "Try clearing filters or changing the search to see destinations again.",
+    "pagination": "Pagination",
+    "previousPages": "Previous pages",
+    "nextPages": "Next pages"
   },
   "favourites": {
     "label": "Favourites"
+  },
+  "heritageDetail": {
+    "label": "Heritage detail"
   },
   "notFound": {
     "label": "Page not found",

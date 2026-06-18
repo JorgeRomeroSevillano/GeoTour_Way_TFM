@@ -1,0 +1,114 @@
+.home__card {
+  height: 152px;
+  display: grid;
+  grid-template-columns: minmax(120px, 42%) minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px;
+  background: #ffffff;
+  border: 2px solid #dedbff;
+  cursor: pointer;
+}
+
+.home__card:focus-visible {
+  outline: 3px solid rgba(36, 88, 70, 0.35);
+  outline-offset: 3px;
+}
+
+.home__card-image {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  border: 2px solid rgba(23, 23, 21, 0.45);
+}
+
+.home__card-content {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.home__card-content h2 {
+  display: -webkit-box;
+  margin: 0 0 6px;
+  overflow: hidden;
+  color: #252520;
+  font-size: 13px;
+  line-height: 1.18;
+  font-weight: 900;
+  letter-spacing: 0;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.home__card-content p {
+  display: -webkit-box;
+  flex: 1;
+  margin: 0;
+  overflow: hidden;
+  color: #696963;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 700;
+  text-align: justify;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.home__card-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 9px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(23, 23, 21, 0.16);
+}
+
+.home__card-footer::before {
+  content: "";
+  order: 2;
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(246, 197, 21, 0.42),
+    rgba(230, 82, 133, 0.42)
+  );
+}
+
+.home__rating {
+  order: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #171715;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.home__rating svg {
+  color: #f6c515;
+}
+
+.home__favourite-button {
+  order: 3;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: #e65285;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 680px) {
+  .home__card {
+    height: 138px;
+    grid-template-columns: 116px minmax(0, 1fr);
+  }
+}

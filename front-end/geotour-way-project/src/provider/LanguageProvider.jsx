@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { LanguageContext } from '../context/LanguageContext'
-import en from '../locales/en'
-import es from '../locales/es'
+import en from '../locales/en.json'
+import es from '../locales/es.json'
 
 const translations = {
   en,

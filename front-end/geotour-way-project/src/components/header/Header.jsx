@@ -52,7 +52,7 @@ function Header() {
         <button
           type="button"
           className="header__favorite-button"
-          aria-label={t('header.favorites')}
+          aria-label={t('header.favourites')}
           onClick={() => navigate('/favourites')}
         >
           <Heart

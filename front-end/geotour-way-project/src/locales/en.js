@@ -1,0 +1,31 @@
+const en = {
+  header: {
+    favorites: 'Favourites',
+    language: 'Language',
+    spanish: 'Spanish',
+    english: 'English',
+  },
+  landing: {
+    navTravel: 'Travel',
+    navExplore: 'Explore',
+    title: '"Discover Spain your way"',
+    subtitle: 'Unique destinations and authentic experiences',
+    action: 'Explore destinations',
+  },
+  home: {
+    label: 'Home',
+  },
+  favorites: {
+    label: 'Favourites',
+  },
+  notFound: {
+    label: 'Page not found',
+    title: 'Page not found',
+    message:
+      'The route you are looking for does not exist or has moved. You can return home and keep exploring destinations with GeoTour Way.',
+    homeAction: 'Go home',
+    backAction: 'Go back',
+  },
+}
+
+export default en

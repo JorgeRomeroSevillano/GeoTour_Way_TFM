@@ -1,8 +1,11 @@
 import { Hash } from 'lucide-react'
 import appIcon from '../../assets/Favicon_GeoTour_Way.png'
+import { useLanguage } from '../../hooks/useLanguage'
 import './styles/LandingHeader.css'
 
 function LandingHeader() {
+  const { t } = useLanguage()
+
   return (
     <header className="landing-header">
       <div className="landing-header__brand">
@@ -15,11 +18,11 @@ function LandingHeader() {
       <nav className="landing-header__nav" aria-label="Navegación principal">
         <span className="landing-header__nav-item">
           <Hash size={22} strokeWidth={3} aria-hidden="true" />
-          Viaja
+          {t('landing.navTravel')}
         </span>
         <span className="landing-header__nav-item">
           <Hash size={22} strokeWidth={3} aria-hidden="true" />
-          Explora
+          {t('landing.navExplore')}
         </span>
       </nav>
     </header>

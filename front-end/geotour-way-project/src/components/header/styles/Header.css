@@ -1,0 +1,149 @@
+.header {
+  position: relative;
+  z-index: 3;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(22, 22, 20, 0.22);
+}
+
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  transform: translateX(-14px);
+  color: #1d1d1b;
+  background: transparent;
+  border: 0;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+.header__brand-icon-frame {
+  width: 68px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: transparent;
+}
+
+.header__brand-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.header__brand-text {
+  margin-left: -14px;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header__favorite-button,
+.header__language-button,
+.header__language-option {
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.header__favorite-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: #050505;
+  background: transparent;
+}
+
+.header__favorite-count {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  min-width: 15px;
+  height: 15px;
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  color: #ffffff;
+  background: #c5161d;
+  border-radius: 999px;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.header__language {
+  position: relative;
+}
+
+.header__language-button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  background: transparent;
+}
+
+.header__language-flag {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.header__language-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 128px;
+  padding: 6px;
+  background: #ffffff;
+  border: 1px solid rgba(22, 22, 20, 0.18);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.header__language-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  color: #171715;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.header__language-option:hover {
+  background: #f1f1ec;
+}
+
+@media (max-width: 700px) {
+  .header {
+    padding: 0 14px;
+  }
+
+  .header__brand {
+    transform: translateX(-10px);
+  }
+
+  .header__actions {
+    gap: 12px;
+  }
+}

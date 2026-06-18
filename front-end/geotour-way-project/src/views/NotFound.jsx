@@ -1,19 +1,18 @@
 import { ArrowLeft, Compass, Home, Map } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import { useLanguage } from '../hooks/useLanguage'
 import './styles/NotFound.css'
 
 function NotFound() {
   const navigate = useNavigate()
+  const { t } = useLanguage()
 
   return (
-    <section className="notfound" aria-label="Página no encontrada">
+    <section className="notfound" aria-label={t('notFound.label')}>
       <div className="notfound__content">
         <p className="notfound__eyebrow">404</p>
-        <h1 className="notfound__title">Página no encontrada</h1>
-        <p className="notfound__message">
-          La ruta que buscas no existe o se ha movido. Puedes volver al inicio
-          y seguir explorando destinos desde GeoTour Way.
-        </p>
+        <h1 className="notfound__title">{t('notFound.title')}</h1>
+        <p className="notfound__message">{t('notFound.message')}</p>
 
         <div className="notfound__actions">
           <button
@@ -22,7 +21,7 @@ function NotFound() {
             onClick={() => navigate('/home')}
           >
             <Home size={18} aria-hidden="true" />
-            Ir al inicio
+            {t('notFound.homeAction')}
           </button>
           <button
             type="button"
@@ -30,7 +29,7 @@ function NotFound() {
             onClick={() => navigate(-1)}
           >
             <ArrowLeft size={18} aria-hidden="true" />
-            Volver atrás
+            {t('notFound.backAction')}
           </button>
         </div>
       </div>

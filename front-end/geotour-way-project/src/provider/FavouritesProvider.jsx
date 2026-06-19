@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { HeritageListContext } from '../context/HeritageListContext'
 import {
-  addFavorito,
   deleteFavorito,
+  deleteFavoritos,
   getFavoritos,
 } from '../services/favoritosService'
 import { getPatrimonios } from '../services/patrimonioService'
@@ -15,41 +15,6 @@ const EMPTY_FILTERS = {
   localidades: [],
   provincias: [],
   comunidades: [],
-}
-const HOME_STATE_STORAGE_KEY = 'geotour-way-home-state'
-
-function getInitialHomeState() {
-  try {
-    const storedState = window.localStorage.getItem(HOME_STATE_STORAGE_KEY)
-
-    if (!storedState) {
-      return {
-        appliedSearch: '',
-        draftFilters: EMPTY_FILTERS,
-        filters: EMPTY_FILTERS,
-        search: '',
-        sortBy: 'name',
-      }
-    }
-
-    const parsedState = JSON.parse(storedState)
-
-    return {
-      appliedSearch: parsedState.appliedSearch ?? '',
-      draftFilters: parsedState.draftFilters ?? EMPTY_FILTERS,
-      filters: parsedState.filters ?? EMPTY_FILTERS,
-      search: parsedState.search ?? '',
-      sortBy: parsedState.sortBy ?? 'name',
-    }
-  } catch {
-    return {
-      appliedSearch: '',
-      draftFilters: EMPTY_FILTERS,
-      filters: EMPTY_FILTERS,
-      search: '',
-      sortBy: 'name',
-    }
-  }
 }
 
 function getUniqueSortedValues(values) {
@@ -73,14 +38,18 @@ function getFilterOptions(patrimonios) {
   }
 }
 
-function buildRequestFilters(filters, search) {
+function buildFavouriteFilters(favouriteIds, filters = {}) {
+  if (favouriteIds.length === 0) {
+    return null
+  }
+
   return {
+    ids: favouriteIds,
     tipo: filters.tipo,
     valoracion: filters.valoracion,
     localidades: filters.localidades,
     provincias: filters.provincias,
     comunidades: filters.comunidades,
-    nombre: search,
   }
 }
 
@@ -120,58 +89,81 @@ function notifyFavouritesChanged(nextFavouriteIds) {
   )
 }
 
-function HomeProvider({ children }) {
-  const initialHomeState = useMemo(() => getInitialHomeState(), [])
+function FavouritesProvider({ children }) {
   const [patrimonios, setPatrimonios] = useState([])
-  const [allPatrimonios, setAllPatrimonios] = useState([])
+  const [allFavouritePatrimonios, setAllFavouritePatrimonios] = useState([])
   const [favouriteIds, setFavouriteIds] = useState([])
-  const [filters, setFilters] = useState(initialHomeState.filters)
-  const [draftFilters, setDraftFilters] = useState(initialHomeState.draftFilters)
-  const [search, setSearch] = useState(initialHomeState.search)
-  const [appliedSearch, setAppliedSearch] = useState(
-    initialHomeState.appliedSearch,
-  )
-  const [sortBy, setSortBy] = useState(initialHomeState.sortBy)
+  const [filters, setFilters] = useState(EMPTY_FILTERS)
+  const [draftFilters, setDraftFilters] = useState(EMPTY_FILTERS)
+  const [sortBy, setSortBy] = useState('name')
   const [page, setPage] = useState(1)
   const [isFiltersOpen, setIsFiltersOpen] = useState(false)
 
-  const loadPatrimonios = useCallback((nextFilters, nextSearch) => {
-    return getPatrimonios(buildRequestFilters(nextFilters, nextSearch)).then((data) => {
-      setPatrimonios(data)
-      setPage(1)
-    })
-  }, [])
-
   useEffect(() => {
-    getPatrimonios().then((data) => {
-      setAllPatrimonios(data)
-    })
-
     getFavoritos()
       .then((response) => setFavouriteIds(response.idsPatrimonio ?? []))
       .catch(() => setFavouriteIds([]))
   }, [])
 
   useEffect(() => {
-    loadPatrimonios(filters, appliedSearch)
-  }, [appliedSearch, filters, loadPatrimonios])
+    let isMounted = true
+    const requestFilters = buildFavouriteFilters(favouriteIds)
+
+    if (!requestFilters) {
+      Promise.resolve().then(() => {
+        if (isMounted) {
+          setAllFavouritePatrimonios([])
+        }
+      })
+
+      return () => {
+        isMounted = false
+      }
+    }
+
+    getPatrimonios(requestFilters).then((data) => {
+      if (isMounted) {
+        setAllFavouritePatrimonios(data)
+      }
+    })
+
+    return () => {
+      isMounted = false
+    }
+  }, [favouriteIds])
 
   useEffect(() => {
-    window.localStorage.setItem(
-      HOME_STATE_STORAGE_KEY,
-      JSON.stringify({
-        appliedSearch,
-        draftFilters,
-        filters,
-        search,
-        sortBy,
-      }),
-    )
-  }, [appliedSearch, draftFilters, filters, search, sortBy])
+    let isMounted = true
+    const requestFilters = buildFavouriteFilters(favouriteIds, filters)
+
+    if (!requestFilters) {
+      Promise.resolve().then(() => {
+        if (isMounted) {
+          setPatrimonios([])
+          setPage(1)
+        }
+      })
+
+      return () => {
+        isMounted = false
+      }
+    }
+
+    getPatrimonios(requestFilters).then((data) => {
+      if (isMounted) {
+        setPatrimonios(data)
+        setPage(1)
+      }
+    })
+
+    return () => {
+      isMounted = false
+    }
+  }, [favouriteIds, filters])
 
   const filterOptions = useMemo(
-    () => getFilterOptions(allPatrimonios),
-    [allPatrimonios],
+    () => getFilterOptions(allFavouritePatrimonios),
+    [allFavouritePatrimonios],
   )
   const favouriteIdSet = useMemo(() => new Set(favouriteIds), [favouriteIds])
   const sortedPatrimonios = useMemo(
@@ -192,16 +184,6 @@ function HomeProvider({ children }) {
   )
   const hasPreviousPageGroup = pageNumbers[0] > 1
   const hasNextPageGroup = pageNumbers[pageNumbers.length - 1] < totalPages
-
-  function handleSearch() {
-    setAppliedSearch(search)
-  }
-
-  function handleSearchKeyDown(event) {
-    if (event.key === 'Enter') {
-      handleSearch()
-    }
-  }
 
   function handleFilterToggle(filterName, value) {
     setDraftFilters((currentFilters) => {
@@ -247,15 +229,6 @@ function HomeProvider({ children }) {
     }))
   }
 
-  function handleSearchChange(event) {
-    const nextSearch = event.target.value
-    setSearch(nextSearch)
-
-    if (!nextSearch) {
-      setAppliedSearch('')
-    }
-  }
-
   function handleApplyFilters() {
     setFilters(draftFilters)
   }
@@ -280,26 +253,27 @@ function HomeProvider({ children }) {
 
   const handleFavouriteToggle = useCallback((patrimonioId) => {
     const previousFavouriteIds = favouriteIds
-    const isFavourite = previousFavouriteIds.includes(patrimonioId)
-    const optimisticFavouriteIds = isFavourite
-      ? previousFavouriteIds.filter((id) => id !== patrimonioId)
-      : [...previousFavouriteIds, patrimonioId]
-    const request = isFavourite ? deleteFavorito(patrimonioId) : addFavorito(patrimonioId)
+    const nextFavouriteIds = previousFavouriteIds.filter(
+      (id) => id !== patrimonioId,
+    )
 
-    setFavouriteIds(optimisticFavouriteIds)
-    notifyFavouritesChanged(optimisticFavouriteIds)
+    setFavouriteIds(nextFavouriteIds)
+    notifyFavouritesChanged(nextFavouriteIds)
 
-    request
-      .then((response) => {
-        const nextFavouriteIds = response.idsPatrimonio ?? optimisticFavouriteIds
-        setFavouriteIds(nextFavouriteIds)
-        notifyFavouritesChanged(nextFavouriteIds)
-      })
-      .catch(() => {
-        setFavouriteIds(previousFavouriteIds)
-        notifyFavouritesChanged(previousFavouriteIds)
-      })
+    deleteFavorito(patrimonioId).catch(() => {
+      setFavouriteIds(previousFavouriteIds)
+      notifyFavouritesChanged(previousFavouriteIds)
+    })
   }, [favouriteIds])
+
+  function handleClearAllFavourites() {
+    deleteFavoritos().then(() => {
+      setFavouriteIds([])
+      setPatrimonios([])
+      setAllFavouritePatrimonios([])
+      notifyFavouritesChanged([])
+    })
+  }
 
   const value = {
     draftFilters,
@@ -309,13 +283,11 @@ function HomeProvider({ children }) {
     goToNextPageGroup,
     goToPreviousPageGroup,
     handleApplyFilters,
+    handleClearAllFavourites,
     handleClearFilters,
     handleFavouriteToggle,
     handleFilterToggle,
     handleMinimumRatingChange,
-    handleSearch,
-    handleSearchChange,
-    handleSearchKeyDown,
     handleSortChange,
     hasNextPageGroup,
     hasPreviousPageGroup,
@@ -323,7 +295,7 @@ function HomeProvider({ children }) {
     page,
     pageNumbers,
     paginatedPatrimonios,
-    search,
+    savedCount: favouriteIds.length,
     setIsFiltersOpen,
     setPage,
     sortBy,
@@ -337,4 +309,4 @@ function HomeProvider({ children }) {
   )
 }
 
-export default HomeProvider
+export default FavouritesProvider

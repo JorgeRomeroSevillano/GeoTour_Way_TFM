@@ -1,9 +1,9 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useHome } from '../../hooks/useHome'
+import { useHeritageList } from '../../hooks/useHeritageList'
 import { useLanguage } from '../../hooks/useLanguage'
-import './styles/HomePagination.css'
+import './styles/HeritagePagination.css'
 
-function HomePagination() {
+function HeritagePagination() {
   const {
     goToNextPageGroup,
     goToPreviousPageGroup,
@@ -13,7 +13,7 @@ function HomePagination() {
     pageNumbers,
     setPage,
     totalResults,
-  } = useHome()
+  } = useHeritageList()
   const { t } = useLanguage()
 
   if (totalResults <= 9) {
@@ -60,4 +60,4 @@ function HomePagination() {
   )
 }
 
-export default HomePagination
+export default HeritagePagination

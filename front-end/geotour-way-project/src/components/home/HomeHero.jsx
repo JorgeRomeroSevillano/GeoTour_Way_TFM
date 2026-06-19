@@ -1,11 +1,11 @@
 import { Search } from 'lucide-react'
-import { useHome } from '../../hooks/useHome'
+import { useHeritageList } from '../../hooks/useHeritageList'
 import { useLanguage } from '../../hooks/useLanguage'
 import './styles/HomeHero.css'
 
 function HomeHero() {
   const { handleSearch, handleSearchChange, handleSearchKeyDown, search } =
-    useHome()
+    useHeritageList()
   const { t } = useLanguage()
 
   return (

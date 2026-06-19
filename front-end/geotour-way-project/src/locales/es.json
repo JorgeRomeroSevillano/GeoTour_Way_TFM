@@ -44,7 +44,14 @@
     "nextPages": "Páginas siguientes"
   },
   "favourites": {
-    "label": "Favoritos"
+    "label": "Favoritos",
+    "backToList": "Volver a la lista",
+    "title": "Tu lista de favoritos",
+    "subtitle": "Aquí tienes tu lista de lugares favoritos",
+    "savedPlaces": "lugares guardados",
+    "clearList": "Vaciar lista de favoritos",
+    "noResultsTitle": "No tienes favoritos visibles",
+    "noResults": "Guarda lugares desde el listado o ajusta los filtros para ver tus favoritos."
   },
   "heritageDetail": {
     "label": "Detalle de patrimonio"

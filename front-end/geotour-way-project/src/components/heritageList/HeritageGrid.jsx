@@ -1,18 +1,22 @@
-import { useHome } from '../../hooks/useHome'
+import { useHeritageList } from '../../hooks/useHeritageList'
 import { useLanguage } from '../../hooks/useLanguage'
 import HeritageCard from './HeritageCard'
 import './styles/HeritageGrid.css'
 
-function HeritageGrid() {
-  const { favouriteIdSet, handleFavouriteToggle, paginatedPatrimonios } = useHome()
+function HeritageGrid({
+  emptyMessageKey = 'home.noResults',
+  emptyTitleKey = 'home.noResultsTitle',
+}) {
+  const { favouriteIdSet, handleFavouriteToggle, paginatedPatrimonios } =
+    useHeritageList()
   const { t } = useLanguage()
 
   return (
     <section className="home__heritage-results">
       {paginatedPatrimonios.length === 0 && (
         <div className="home__empty">
-          <h2>{t('home.noResultsTitle')}</h2>
-          <p>{t('home.noResults')}</p>
+          <h2>{t(emptyTitleKey)}</h2>
+          <p>{t(emptyMessageKey)}</p>
         </div>
       )}
 

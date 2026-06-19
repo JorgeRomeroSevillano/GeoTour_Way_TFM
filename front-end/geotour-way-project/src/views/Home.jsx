@@ -1,26 +1,26 @@
-import HeritageGrid from '../components/home/HeritageGrid'
-import HomeFilters from '../components/home/HomeFilters'
 import HomeHero from '../components/home/HomeHero'
-import HomePagination from '../components/home/HomePagination'
-import HomeToolbar from '../components/home/HomeToolbar'
-import { useHome } from '../hooks/useHome'
+import HeritageFilters from '../components/heritageList/HeritageFilters'
+import HeritageGrid from '../components/heritageList/HeritageGrid'
+import HeritagePagination from '../components/heritageList/HeritagePagination'
+import HeritageToolbar from '../components/heritageList/HeritageToolbar'
+import { useHeritageList } from '../hooks/useHeritageList'
 import { useLanguage } from '../hooks/useLanguage'
 import HomeProvider from '../provider/HomeProvider'
 import './styles/Home.css'
 
 function HomeContent() {
-  const { isFiltersOpen } = useHome()
+  const { isFiltersOpen } = useHeritageList()
   const { t } = useLanguage()
 
   return (
     <section className="home" aria-label={t('home.label')}>
-      {isFiltersOpen && <HomeFilters />}
+      {isFiltersOpen && <HeritageFilters />}
 
       <div className="home__content">
         <HomeHero />
-        <HomeToolbar />
+        <HeritageToolbar />
         <HeritageGrid />
-        <HomePagination />
+        <HeritagePagination />
       </div>
     </section>
   )

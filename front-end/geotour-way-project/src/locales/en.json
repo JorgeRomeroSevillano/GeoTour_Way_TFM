@@ -44,7 +44,14 @@
     "nextPages": "Next pages"
   },
   "favourites": {
-    "label": "Favourites"
+    "label": "Favourites",
+    "backToList": "Back to list",
+    "title": "Your favourites list",
+    "subtitle": "Here is your list of favourite places",
+    "savedPlaces": "saved places",
+    "clearList": "Clear favourites list",
+    "noResultsTitle": "No visible favourites",
+    "noResults": "Save places from the list or adjust the filters to see your favourites."
   },
   "heritageDetail": {
     "label": "Heritage detail"

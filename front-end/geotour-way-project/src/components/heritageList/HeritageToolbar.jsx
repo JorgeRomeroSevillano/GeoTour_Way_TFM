@@ -1,16 +1,16 @@
 import { ArrowDownAZ, SlidersHorizontal } from 'lucide-react'
-import { useHome } from '../../hooks/useHome'
+import { useHeritageList } from '../../hooks/useHeritageList'
 import { useLanguage } from '../../hooks/useLanguage'
-import './styles/HomeToolbar.css'
+import './styles/HeritageToolbar.css'
 
-function HomeToolbar() {
+function HeritageToolbar() {
   const {
     handleSortChange,
     isFiltersOpen,
     setIsFiltersOpen,
     sortBy,
     totalResults,
-  } = useHome()
+  } = useHeritageList()
   const { t } = useLanguage()
 
   return (
@@ -52,4 +52,4 @@ function HomeToolbar() {
   )
 }
 
-export default HomeToolbar
+export default HeritageToolbar

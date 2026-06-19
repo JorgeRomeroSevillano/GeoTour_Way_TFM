@@ -1,15 +1,15 @@
 import { useMemo, useState } from 'react'
 import { FilterX, X } from 'lucide-react'
-import { useHome } from '../../hooks/useHome'
+import { useHeritageList } from '../../hooks/useHeritageList'
 import { useLanguage } from '../../hooks/useLanguage'
-import './styles/HomeFilters.css'
+import './styles/HeritageFilters.css'
 
 function getOptionLabel(value) {
   return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
 }
 
-function HomeFilterCheckboxGroup({ filterName, values, searchable = false }) {
-  const { draftFilters, handleFilterToggle } = useHome()
+function HeritageFilterCheckboxGroup({ filterName, values, searchable = false }) {
+  const { draftFilters, handleFilterToggle } = useHeritageList()
   const { t } = useLanguage()
   const [query, setQuery] = useState('')
   const visibleValues = useMemo(() => {
@@ -59,8 +59,8 @@ function HomeFilterCheckboxGroup({ filterName, values, searchable = false }) {
   )
 }
 
-function HomeFiltersActions() {
-  const { handleApplyFilters, handleClearFilters } = useHome()
+function HeritageFiltersActions() {
+  const { handleApplyFilters, handleClearFilters } = useHeritageList()
   const { t } = useLanguage()
 
   return (
@@ -84,13 +84,13 @@ function HomeFiltersActions() {
   )
 }
 
-function HomeFilters() {
+function HeritageFilters() {
   const {
     draftFilters,
     filterOptions,
     handleMinimumRatingChange,
     setIsFiltersOpen,
-  } = useHome()
+  } = useHeritageList()
   const { t } = useLanguage()
 
   return (
@@ -111,7 +111,7 @@ function HomeFilters() {
 
         <div className="home__filter-group">
           <h3>{t('home.type')}</h3>
-          <HomeFilterCheckboxGroup filterName="tipo" values={filterOptions.tipo} />
+          <HeritageFilterCheckboxGroup filterName="tipo" values={filterOptions.tipo} />
         </div>
         <div className="home__filter-group">
           <h3>{t('home.minimumRating')}</h3>
@@ -127,7 +127,7 @@ function HomeFilters() {
         </div>
         <div className="home__filter-group">
           <h3>{t('home.localities')}</h3>
-          <HomeFilterCheckboxGroup
+          <HeritageFilterCheckboxGroup
             filterName="localidades"
             searchable
             values={filterOptions.localidades}
@@ -135,7 +135,7 @@ function HomeFilters() {
         </div>
         <div className="home__filter-group">
           <h3>{t('home.provinces')}</h3>
-          <HomeFilterCheckboxGroup
+          <HeritageFilterCheckboxGroup
             filterName="provincias"
             searchable
             values={filterOptions.provincias}
@@ -143,16 +143,16 @@ function HomeFilters() {
         </div>
         <div className="home__filter-group">
           <h3>{t('home.communities')}</h3>
-          <HomeFilterCheckboxGroup
+          <HeritageFilterCheckboxGroup
             filterName="comunidades"
             searchable
             values={filterOptions.comunidades}
           />
         </div>
       </div>
-      <HomeFiltersActions />
+      <HeritageFiltersActions />
     </aside>
   )
 }
 
-export default HomeFilters
+export default HeritageFilters

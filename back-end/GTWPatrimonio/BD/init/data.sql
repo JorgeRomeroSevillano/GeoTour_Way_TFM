@@ -1858,7 +1858,11 @@ VALUES
 
 ('Monasterio de Montserrat',
 'El Monasterio de Montserrat es uno de los grandes centros espirituales y culturales de Cataluña. Situado en la montaña de Montserrat, alberga la venerada imagen de la Virgen de Montserrat y una comunidad benedictina con siglos de historia. Su entorno rocoso, su patrimonio artístico y su importancia religiosa lo convierten en un lugar emblemático del paisaje catalán.',
-'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Montserrat_Natural_Park_4.jpg/1280px-Montserrat_Natural_Park_4.jpg', 'cultural', 9.20, 'Monistrol de Montserrat', '08127', 9, 41.5933, 1.8372);
+'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Montserrat_Natural_Park_4.jpg/1280px-Montserrat_Natural_Park_4.jpg', 'cultural', 9.20, 'Monistrol de Montserrat', '08127', 9, 41.5933, 1.8372),
+
+('Real Monasterio de Santa María de Guadalupe',
+'El Real Monasterio de Santa María de Guadalupe es uno de los conjuntos religiosos y artísticos más importantes de España. Su arquitectura combina estilos gótico, mudéjar, renacentista, barroco y neoclásico. Declarado Patrimonio de la Humanidad, conserva destacadas obras de arte y mantiene una estrecha vinculación con la historia de los Reyes Católicos y el descubrimiento de América.',
+'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Fachada_del_Real_Monasterio_de_Ntra._Sra._de_Guadalupe%2C_C%C3%A1ceres.jpg/1920px-Fachada_del_Real_Monasterio_de_Ntra._Sra._de_Guadalupe%2C_C%C3%A1ceres.jpg', 'cultural', 9.50, 'Guadalupe', '10087', 11, 39.4526, -5.3274);
 
 INSERT INTO patrimonio_natural (id, ecosistema, extension)
 VALUES
@@ -2037,4 +2041,5 @@ VALUES
 (170, 'Paisajismo histórico', 'Siglo XVII'),
 (171, 'Gótico mallorquín', 'Siglo XIV'),
 (172, 'Neogótico-neorrománico', 'Siglo XIX-XX'),
-(173, 'Románico-gótico', 'Siglo XI-XVI');
+(173, 'Románico-gótico', 'Siglo XI-XVI'),
+(174, 'Gótico-mudéjar', 'Siglo XIII-XVIII');

@@ -11,6 +11,7 @@ import {
   ScaleControl,
   TileLayer,
   Tooltip,
+  ZoomControl,
   useMap,
   useMapEvents,
 } from 'react-leaflet'
@@ -38,12 +39,29 @@ const redMarkerIcon = L.divIcon({
   popupAnchor: [0, -28],
 })
 
+const blueMarkerIcon = L.divIcon({
+  className: 'map__blue-marker-wrapper',
+  html: '<span class="map__blue-marker"></span>',
+  iconAnchor: [10, 25],
+  iconSize: [20, 25],
+  popupAnchor: [0, -25],
+  tooltipAnchor: [0, -23],
+})
+
 function formatDistance(distance) {
   if (distance >= 1000) {
     return `${(distance / 1000).toFixed(distance >= 10000 ? 0 : 2)} km`
   }
 
   return `${Math.round(distance)} m`
+}
+
+function shouldShowMarkerTooltip(marker, mapView) {
+  if (!marker.tooltipContent || mapView.zoom < marker.labelMinZoom) {
+    return false
+  }
+
+  return !mapView.bounds || mapView.bounds.contains(marker.position)
 }
 
 function MeasureEvents({ active, onPointSelected }) {
@@ -85,13 +103,17 @@ function MiniMapUpdater({ center, zoom }) {
   return null
 }
 
-function MiniMap({ bounds, center, isOpen, onToggle, parentZoom }) {
+function MiniMap({ bounds, center, isOpen, onToggle, parentZoom, variant }) {
   const { t } = useLanguage()
   const miniMapZoom = Math.max(parentZoom - 6, 3)
 
   return (
     <div
-      className={isOpen ? 'map-shell__minimap' : 'map-shell__minimap map-shell__minimap--closed'}
+      className={[
+        'map-shell__minimap',
+        variant === 'large' ? 'map-shell__minimap--large' : '',
+        isOpen ? '' : 'map-shell__minimap--closed',
+      ].filter(Boolean).join(' ')}
     >
       {isOpen && (
         <MapContainer
@@ -138,10 +160,12 @@ function Map({
   center = DEFAULT_CENTER,
   enableMeasure = false,
   markers = [],
+  miniMapVariant = 'default',
   showMiniMap = false,
   showScale = false,
   variant = 'default',
   zoom = DEFAULT_ZOOM,
+  zoomControlPosition = 'topleft',
 }) {
   const { t } = useLanguage()
   const [isMeasuring, setIsMeasuring] = useState(false)
@@ -159,6 +183,8 @@ function Map({
 
     return measurePoints[0].distanceTo(measurePoints[1])
   }, [measurePoints])
+  const shouldTrackMapView =
+    showMiniMap || markers.some((marker) => marker.labelMinZoom !== undefined)
 
   const handleViewChange = useCallback((leafletMap) => {
     const currentCenter = leafletMap.getCenter()
@@ -194,25 +220,44 @@ function Map({
         scrollWheelZoom
         touchZoom
         zoom={zoom}
-        zoomControl
+        zoomControl={false}
       >
         <TileLayer
           attribution="&copy; OpenStreetMap contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <ZoomControl position={zoomControlPosition} />
 
         {markers.map((marker) => (
           <Marker
             key={marker.id ?? marker.popupText}
-            icon={marker.color === 'red' ? redMarkerIcon : undefined}
+            icon={
+              marker.color === 'red'
+                ? redMarkerIcon
+                : marker.color === 'blue'
+                  ? blueMarkerIcon
+                  : undefined
+            }
             position={marker.position}
           >
-            {marker.popupText && <Popup>{marker.popupText}</Popup>}
+            {(marker.popupContent || marker.popupText) && (
+              <Popup>{marker.popupContent ?? marker.popupText}</Popup>
+            )}
+            {shouldShowMarkerTooltip(marker, mapView) && (
+                <Tooltip
+                  permanent
+                  direction="top"
+                  opacity={1}
+                  className="map__accommodation-tooltip"
+                >
+                  {marker.tooltipContent}
+                </Tooltip>
+              )}
           </Marker>
         ))}
 
         {showScale && <ScaleControl imperial={false} position="bottomright" />}
-        {showMiniMap && <MapViewTracker onViewChange={handleViewChange} />}
+        {shouldTrackMapView && <MapViewTracker onViewChange={handleViewChange} />}
         {enableMeasure && (
           <MeasureEvents
             active={isMeasuring}
@@ -266,6 +311,7 @@ function Map({
           isOpen={isMiniMapOpen}
           onToggle={() => setIsMiniMapOpen((currentValue) => !currentValue)}
           parentZoom={mapView.zoom}
+          variant={miniMapVariant}
         />
       )}
     </div>

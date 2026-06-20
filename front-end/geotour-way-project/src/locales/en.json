@@ -107,6 +107,23 @@
     "showMiniMap": "Show minimap",
     "hideMiniMap": "Hide minimap"
   },
+  "accommodation": {
+    "label": "Nearby accommodation",
+    "nearbyTitle": "Nearby accommodation",
+    "searching": "Searching for nearby accommodation...",
+    "loadError": "Accommodation could not be loaded",
+    "legend": "Map legend",
+    "name": "Name",
+    "locality": "Locality",
+    "province": "Province",
+    "community": "Community",
+    "heritage": "Heritage",
+    "lodging": "Accommodation",
+    "filterByRate": "Filter by rating",
+    "searchRadius": "Search radius",
+    "noResults": "No accommodation was found within the maximum search radius.",
+    "noFilteredResults": "No accommodation is visible with the selected ratings."
+  },
   "notFound": {
     "label": "Page not found",
     "title": "Page not found",

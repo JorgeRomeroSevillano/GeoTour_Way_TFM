@@ -1244,7 +1244,7 @@ VALUES
 
 ('Parque Natural de la Serranía de Cuenca',
 'La Serranía de Cuenca presenta formaciones kársticas, bosques y ríos que crean paisajes singulares como la Ciudad Encantada. Es un espacio natural ideal para el senderismo y la observación geológica, con gran riqueza en flora y fauna mediterránea y continental.',
-'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Tagus_river_gorge%2C_Guadalajara_%28Spain%29.jpg/1280px-Tagus_river_gorge%2C_Guadalajara_%28Spain%29.jpg', 'natural', 9.75, 'Cuenca', '16078', 17, 40.0700, -2.1400),
+'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Tagus_river_gorge%2C_Guadalajara_%28Spain%29.jpg/1280px-Tagus_river_gorge%2C_Guadalajara_%28Spain%29.jpg', 'natural', 9.75, 'Cuenca', '16078', 17, 40.2754, -1.9151),
 
 ('Desierto de Tabernas',
 'El Desierto de Tabernas es el único desierto semiárido de Europa, con paisajes de badlands, ramblas secas y formaciones erosionadas por el viento y la lluvia. Ha sido escenario de numerosos rodajes cinematográficos. Su ecosistema es muy particular, con especies adaptadas a condiciones extremas de aridez y fuertes contrastes térmicos.',
@@ -1260,7 +1260,7 @@ VALUES
 
 ('Parque Natural de la Zona Volcánica de la Garrotxa',
 'Este parque en Girona destaca por su gran concentración de volcanes inactivos y coladas de lava que han dado lugar a suelos fértiles y bosques frondosos. Los conos volcánicos están bien conservados y el paisaje combina naturaleza volcánica con vegetación mediterránea y atlántica en un entorno único en la península.',
-'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Volc%C3%A0_de_Santa_Margarida.jpg/1280px-Volc%C3%A0_de_Santa_Margarida.jpg', 'natural', 8.80, 'Olot', '17114', 18, 42.1412, 2.5475),
+'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Volc%C3%A0_de_Santa_Margarida.jpg/1280px-Volc%C3%A0_de_Santa_Margarida.jpg', 'natural', 8.80, 'Olot', '17114', 18, 42.1633, 2.5207),
 
 ('Lagos de Covadonga',
 'Los Lagos de Covadonga, situados en el Parque Nacional de los Picos de Europa, son uno de los paisajes naturales más emblemáticos de Asturias. Los lagos Enol y Ercina están rodeados de montañas, pastos y rutas de senderismo de gran belleza. La zona combina valor ecológico, tradición ganadera y un fuerte atractivo turístico vinculado también al cercano Santuario de Covadonga.',

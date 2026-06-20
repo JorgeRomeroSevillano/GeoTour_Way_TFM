@@ -107,6 +107,23 @@
     "showMiniMap": "Mostrar minimapa",
     "hideMiniMap": "Ocultar minimapa"
   },
+  "accommodation": {
+    "label": "Alojamientos cercanos",
+    "nearbyTitle": "Alojamientos cercanos",
+    "searching": "Buscando alojamientos cercanos...",
+    "loadError": "No se han podido cargar los alojamientos",
+    "legend": "Leyenda del mapa",
+    "name": "Nombre",
+    "locality": "Localidad",
+    "province": "Provincia",
+    "community": "Comunidad",
+    "heritage": "Patrimonio",
+    "lodging": "Alojamiento",
+    "filterByRate": "Filtrar por valoración",
+    "searchRadius": "Radio de búsqueda",
+    "noResults": "No se encontraron alojamientos en el radio máximo de búsqueda.",
+    "noFilteredResults": "No hay alojamientos visibles con las valoraciones seleccionadas."
+  },
   "notFound": {
     "label": "Página no encontrada",
     "title": "Página no encontrada",

@@ -1,0 +1,32 @@
+.accommodation-marker-label {
+  min-width: 105px;
+  max-width: 180px;
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  padding: 7px 9px;
+  color: #171715;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(23, 23, 21, 0.45);
+  border-radius: 3px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.accommodation-marker-label strong {
+  font-size: 11px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.accommodation-marker-label__stars {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  color: #f4bf16;
+}
+
+.leaflet-popup-content .accommodation-marker-label {
+  border: 0;
+  box-shadow: none;
+}

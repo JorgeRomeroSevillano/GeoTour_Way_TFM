@@ -1,0 +1,155 @@
+.accommodation-legend {
+  position: absolute;
+  z-index: 600;
+  top: 14px;
+  left: 14px;
+  width: min(290px, calc(100% - 84px));
+  padding: 15px;
+  color: #171715;
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(23, 23, 21, 0.2);
+  border-radius: 5px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(5px);
+}
+
+.accommodation-legend__heritage {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+}
+
+.accommodation-legend__heritage div {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.accommodation-legend__heritage dt,
+.accommodation-legend__heritage dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.accommodation-legend__heritage dt {
+  font-weight: 800;
+}
+
+.accommodation-legend__heritage dd {
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.accommodation-legend__symbols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(23, 23, 21, 0.17);
+}
+
+.accommodation-legend__symbols span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.accommodation-legend__pin {
+  width: 14px;
+  height: 14px;
+  display: block;
+  border: 2px solid #ffffff;
+  border-radius: 50% 50% 50% 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  transform: rotate(-45deg);
+}
+
+.accommodation-legend__pin--red {
+  background: #d92525;
+}
+
+.accommodation-legend__pin--blue {
+  background: #1769d2;
+}
+
+.accommodation-legend__filter {
+  margin-top: 13px;
+}
+
+.accommodation-legend__filter summary {
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 9px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(23, 23, 21, 0.3);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 900;
+  list-style: none;
+  cursor: pointer;
+}
+
+.accommodation-legend__filter summary::-webkit-details-marker {
+  display: none;
+}
+
+.accommodation-legend__filter[open] summary svg {
+  transform: rotate(180deg);
+}
+
+.accommodation-legend__rate-options {
+  display: grid;
+  gap: 5px;
+  padding: 9px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(23, 23, 21, 0.18);
+  border-top: 0;
+}
+
+.accommodation-legend__rate-options label {
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.accommodation-legend__rate-options input {
+  width: 16px;
+  height: 16px;
+  accent-color: #31855d;
+}
+
+.accommodation-legend__rate-options svg {
+  color: #f4bf16;
+}
+
+.accommodation-legend__radius {
+  display: block;
+  margin-top: 10px;
+  color: #4f4f49;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+@media (max-width: 600px) {
+  .accommodation-legend {
+    top: 10px;
+    left: 10px;
+    width: min(250px, calc(100% - 72px));
+    padding: 11px;
+  }
+
+  .accommodation-legend__heritage div {
+    grid-template-columns: 74px minmax(0, 1fr);
+  }
+}

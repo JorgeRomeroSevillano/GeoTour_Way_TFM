@@ -4,14 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import placeholderImage from '../../assets/placeholder.svg'
 import { useLanguage } from '../../hooks/useLanguage'
 import { useTranslatedText } from '../../hooks/useTranslatedText'
-import { getCardImageUrl } from '../../utils/imageUtils'
 import './styles/HeritageCard.css'
 
 function HeritageCard({ isFavourite, onFavouriteToggle, patrimonio }) {
   const navigate = useNavigate()
   const { language, t } = useLanguage()
   const description = useTranslatedText(patrimonio.descripcion, language)
-  const imageUrl = getCardImageUrl(patrimonio.urlImagen) || placeholderImage
 
   function handleFavouriteClick(event) {
     event.stopPropagation()
@@ -32,8 +30,8 @@ function HeritageCard({ isFavourite, onFavouriteToggle, patrimonio }) {
       onKeyDown={handleCardKeyDown}
     >
       <img
-        src={imageUrl}
-        alt=""
+        src={patrimonio.urlImagen || placeholderImage}
+        alt={patrimonio.nombre}
         className="home__card-image"
         loading="lazy"
         decoding="async"

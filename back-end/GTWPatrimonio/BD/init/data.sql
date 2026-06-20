@@ -1522,7 +1522,7 @@ VALUES
 
 ('Sagrada Familia',
 'La Sagrada Familia de Barcelona es la obra maestra inacabada de Antoni Gaudí. Su arquitectura combina formas naturales, simbolismo religioso y técnicas innovadoras. Es uno de los monumentos más visitados del mundo y Patrimonio de la Humanidad.',
-'https://images.pexels.com/photos/35971292/pexels-photo-35971292.jpeg', 'cultural', 10.00, 'Barcelona', '08019', 9, 41.4036, 2.1744),
+'https://images.pexels.com/photos/27348450/pexels-photo-27348450.jpeg', 'cultural', 10.00, 'Barcelona', '08019', 9, 41.4036, 2.1744),
 
 ('Parque Güell',
 'El Parque Güell es una de las creaciones más emblemáticas de Gaudí. Combina arquitectura y naturaleza con formas orgánicas, mosaicos coloridos y estructuras imaginativas. Es Patrimonio de la Humanidad y símbolo del modernismo catalán.',

@@ -1414,11 +1414,11 @@ VALUES
 
 ('Catedral de Santa Ana',
 'La Catedral de Santa Ana en Las Palmas es el principal templo de Gran Canaria. Su construcción se prolongó durante siglos, lo que explica su mezcla de estilos gótico, renacentista y neoclásico. Es un símbolo religioso y arquitectónico de la ciudad.',
-'https://images.pexels.com/photos/23547696/pexels-photo-23547696.jpeg', 'cultural', 7.70, 'Las Palmas de Gran Canaria', '35016', 28, 28.1009, -15.4146),
+'https://images.pexels.com/photos/23547696/pexels-photo-23547696.jpeg', 'cultural', 7.70, 'Las Palmas de Gran Canaria', '35016', 27, 28.1009, -15.4146),
 
 ('Vegueta',
 'Vegueta es el barrio histórico de Las Palmas de Gran Canaria. Conserva calles empedradas, casas coloniales y edificios históricos como la Casa de Colón. Es el núcleo fundacional de la ciudad y un importante centro cultural y turístico.',
-'https://images.pexels.com/photos/31935468/pexels-photo-31935468.jpeg', 'cultural', 7.70, 'Las Palmas de Gran Canaria', '35016', 28, 28.1005, -15.4138),
+'https://images.pexels.com/photos/31935468/pexels-photo-31935468.jpeg', 'cultural', 7.70, 'Las Palmas de Gran Canaria', '35016', 27, 28.1005, -15.4138),
 
 ('Cueva de Altamira',
 'La Cueva de Altamira es uno de los conjuntos de arte rupestre más importantes del mundo. Sus pinturas paleolíticas, especialmente los bisontes, tienen más de 14.000 años de antigüedad. Aunque la cueva original está restringida, su valor histórico y artístico es incalculable, siendo Patrimonio de la Humanidad.',

@@ -118,6 +118,7 @@ function HeritageFilters() {
           <input
             className="home__rating-input"
             type="number"
+            placeholder="0 - 10"
             min="0"
             max="10"
             step="0.1"

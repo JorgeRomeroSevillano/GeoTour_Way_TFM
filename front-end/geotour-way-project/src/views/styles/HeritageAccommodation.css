@@ -1,0 +1,5 @@
+.heritage-accommodation {
+  flex: 1;
+  min-height: calc(100svh - 110px);
+  background: #f6f6f3;
+}

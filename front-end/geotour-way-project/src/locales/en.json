@@ -54,7 +54,58 @@
     "noResults": "Save places from the list or adjust the filters to see your favourites."
   },
   "heritageDetail": {
-    "label": "Heritage detail"
+    "label": "Heritage detail",
+    "loading": "Loading heritage information...",
+    "loadError": "The heritage item could not be loaded",
+    "back": "Back to list",
+    "description": "Description",
+    "readMore": "Read more",
+    "readLess": "Read less",
+    "gastronomy": "Gastronomy",
+    "accommodation": "Accommodation",
+    "quickInfo": "Quick information",
+    "type": "Type",
+    "community": "Autonomous community",
+    "province": "Province",
+    "style": "Style",
+    "centuries": "Centuries",
+    "ecosystem": "Ecosystem",
+    "extension": "Area",
+    "types": {
+      "cultural": "Cultural",
+      "natural": "Natural"
+    },
+    "addFavourite": "Add to favourites",
+    "removeFavourite": "Remove from favourites",
+    "yourRating": "Your rating",
+    "selectRating": "Select a rating",
+    "currentWeather": "Current weather",
+    "saveRating": "Save rating",
+    "unavailable": "Unavailable",
+    "annualClimate": "Average annual climate",
+    "climate": "Climate",
+    "closeClimate": "Close climate",
+    "months": "Months",
+    "maxMin": "Maximum / minimum (°C)",
+    "averageRainfall": "Average rainfall",
+    "noCoordinates": "No coordinates are available for this heritage item.",
+    "seasons": {
+      "invierno": "Winter",
+      "primavera": "Spring",
+      "verano": "Summer",
+      "otoño": "Autumn"
+    },
+    "seasonMonths": {
+      "invierno": "January - March",
+      "primavera": "April - June",
+      "verano": "July - September",
+      "otoño": "October - December"
+    }
+  },
+  "map": {
+    "measureDistance": "Measure distance",
+    "showMiniMap": "Show minimap",
+    "hideMiniMap": "Hide minimap"
   },
   "notFound": {
     "label": "Page not found",

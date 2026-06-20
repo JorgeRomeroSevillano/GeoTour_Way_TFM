@@ -9,12 +9,20 @@ import { getPatrimonios } from '../services/patrimonioService'
 
 const ITEMS_PER_PAGE = 9
 const PAGE_GROUP_SIZE = 3
+const FAVOURITES_PAGE_STORAGE_KEY = 'geotour-way-favourites-page'
 const EMPTY_FILTERS = {
   tipo: [],
   valoracion: '',
   localidades: [],
   provincias: [],
   comunidades: [],
+}
+
+function getInitialPage() {
+  return Math.max(
+    1,
+    Number(window.localStorage.getItem(FAVOURITES_PAGE_STORAGE_KEY)) || 1,
+  )
 }
 
 function getUniqueSortedValues(values) {
@@ -96,12 +104,19 @@ function FavouritesProvider({ children }) {
   const [filters, setFilters] = useState(EMPTY_FILTERS)
   const [draftFilters, setDraftFilters] = useState(EMPTY_FILTERS)
   const [sortBy, setSortBy] = useState('name')
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(getInitialPage)
   const [isFiltersOpen, setIsFiltersOpen] = useState(false)
 
   useEffect(() => {
     getFavoritos()
-      .then((response) => setFavouriteIds(response.idsPatrimonio ?? []))
+      .then((response) => {
+        const ids = response.idsPatrimonio ?? []
+        setFavouriteIds(ids)
+
+        if (ids.length === 0) {
+          setPage(1)
+        }
+      })
       .catch(() => setFavouriteIds([]))
   }, [])
 
@@ -140,7 +155,6 @@ function FavouritesProvider({ children }) {
       Promise.resolve().then(() => {
         if (isMounted) {
           setPatrimonios([])
-          setPage(1)
         }
       })
 
@@ -152,7 +166,9 @@ function FavouritesProvider({ children }) {
     getPatrimonios(requestFilters).then((data) => {
       if (isMounted) {
         setPatrimonios(data)
-        setPage(1)
+        setPage((currentPage) =>
+          Math.min(currentPage, Math.max(1, Math.ceil(data.length / ITEMS_PER_PAGE))),
+        )
       }
     })
 
@@ -160,6 +176,10 @@ function FavouritesProvider({ children }) {
       isMounted = false
     }
   }, [favouriteIds, filters])
+
+  useEffect(() => {
+    window.localStorage.setItem(FAVOURITES_PAGE_STORAGE_KEY, String(page))
+  }, [page])
 
   const filterOptions = useMemo(
     () => getFilterOptions(allFavouritePatrimonios),
@@ -230,10 +250,12 @@ function FavouritesProvider({ children }) {
   }
 
   function handleApplyFilters() {
+    setPage(1)
     setFilters(draftFilters)
   }
 
   function handleClearFilters() {
+    setPage(1)
     setFilters(EMPTY_FILTERS)
     setDraftFilters(EMPTY_FILTERS)
   }

@@ -1,0 +1,40 @@
+.expandable-description {
+  min-width: 0;
+}
+
+.expandable-description__content {
+  max-height: 90px;
+  overflow: hidden;
+  margin: 14px 0 0;
+  color: #171715;
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 650;
+  text-align: justify;
+  white-space: pre-line;
+}
+
+.expandable-description__content--expanded {
+  max-height: 135px;
+  overflow-y: auto;
+  padding-right: 9px;
+  scrollbar-color: #77776f #e7e7e2;
+  scrollbar-width: thin;
+}
+
+.expandable-description__toggle {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  padding: 0 8px;
+  color: #245fbd;
+  background: #ffffff;
+  border: 1px solid rgba(36, 95, 189, 0.4);
+  border-radius: 3px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}

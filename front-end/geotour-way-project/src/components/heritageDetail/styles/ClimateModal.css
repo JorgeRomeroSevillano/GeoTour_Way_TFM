@@ -1,0 +1,108 @@
+.climate-modal {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.42);
+}
+
+.climate-modal__dialog {
+  width: min(620px, 100%);
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(23, 23, 21, 0.22);
+  border-radius: 6px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+}
+
+.climate-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 18px 12px;
+}
+
+.climate-modal__header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.climate-modal__close {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: #d92525;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.climate-modal__tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid rgba(23, 23, 21, 0.18);
+}
+
+.climate-modal__tab {
+  min-height: 52px;
+  padding: 8px;
+  color: #171715;
+  background: #ffffff;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.climate-modal__tab--active {
+  color: #d92525;
+  border-bottom-color: #d92525;
+}
+
+.climate-modal__table-header,
+.climate-modal__table-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px;
+  text-align: center;
+}
+
+.climate-modal__table-header {
+  background: #f4f5f5;
+  border-bottom: 1px solid rgba(23, 23, 21, 0.15);
+  font-size: 12px;
+}
+
+.climate-modal__table-header span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+}
+
+.climate-modal__table-row {
+  font-size: 15px;
+}
+
+@media (max-width: 560px) {
+  .climate-modal__tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .climate-modal__table-header,
+  .climate-modal__table-row {
+    grid-template-columns: 1fr;
+  }
+}

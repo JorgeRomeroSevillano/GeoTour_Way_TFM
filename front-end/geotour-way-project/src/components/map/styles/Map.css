@@ -1,3 +1,8 @@
+.map-shell {
+  position: relative;
+  width: 100%;
+}
+
 .map {
   width: 100%;
   height: 500px;
@@ -11,6 +16,108 @@
   height: 640px;
 }
 
+.map--detail {
+  height: 250px;
+}
+
+.map-shell__measure {
+  position: absolute;
+  z-index: 500;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: #171715;
+  background: #ffffff;
+  border: 2px solid rgba(0, 0, 0, 0.28);
+  border-radius: 4px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+}
+
+.map-shell__measure--active {
+  color: #ffffff;
+  background: #245fbd;
+}
+
+.map-shell__minimap {
+  position: absolute;
+  z-index: 500;
+  bottom: 10px;
+  left: 10px;
+  width: 130px;
+  height: 90px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 2px solid rgba(0, 0, 0, 0.35);
+  border-radius: 5px;
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.28);
+}
+
+.map-shell__minimap--closed {
+  width: 34px;
+  height: 34px;
+}
+
+.map-shell__minimap-map {
+  width: 100%;
+  height: 100%;
+}
+
+.map-shell__minimap-toggle {
+  position: absolute;
+  z-index: 600;
+  right: 3px;
+  bottom: 3px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: #171715;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.map-shell .leaflet-control-scale-line {
+  min-width: 72px;
+  color: #171715;
+  background: rgba(255, 255, 255, 0.86);
+  border-color: #171715;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.map__red-marker-wrapper {
+  background: transparent;
+  border: 0;
+}
+
+.map__red-marker {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  display: block;
+  background: #d92525;
+  border: 3px solid #ffffff;
+  border-radius: 50% 50% 50% 0;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.4);
+  transform: rotate(-45deg);
+}
+
+.map__red-marker::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
 @media (max-width: 700px) {
   .map {
     height: 360px;
@@ -22,5 +129,19 @@
 
   .map--large {
     height: 440px;
+  }
+
+  .map--detail {
+    height: 250px;
+  }
+
+  .map-shell__minimap {
+    width: 125px;
+    height: 90px;
+  }
+
+  .map-shell__minimap--closed {
+    width: 34px;
+    height: 34px;
   }
 }

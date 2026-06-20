@@ -27,6 +27,7 @@ function getInitialHomeState() {
         appliedSearch: '',
         draftFilters: EMPTY_FILTERS,
         filters: EMPTY_FILTERS,
+        page: 1,
         search: '',
         sortBy: 'name',
       }
@@ -38,6 +39,7 @@ function getInitialHomeState() {
       appliedSearch: parsedState.appliedSearch ?? '',
       draftFilters: parsedState.draftFilters ?? EMPTY_FILTERS,
       filters: parsedState.filters ?? EMPTY_FILTERS,
+      page: Math.max(1, Number(parsedState.page) || 1),
       search: parsedState.search ?? '',
       sortBy: parsedState.sortBy ?? 'name',
     }
@@ -46,6 +48,7 @@ function getInitialHomeState() {
       appliedSearch: '',
       draftFilters: EMPTY_FILTERS,
       filters: EMPTY_FILTERS,
+      page: 1,
       search: '',
       sortBy: 'name',
     }
@@ -132,13 +135,15 @@ function HomeProvider({ children }) {
     initialHomeState.appliedSearch,
   )
   const [sortBy, setSortBy] = useState(initialHomeState.sortBy)
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(initialHomeState.page)
   const [isFiltersOpen, setIsFiltersOpen] = useState(false)
 
   const loadPatrimonios = useCallback((nextFilters, nextSearch) => {
     return getPatrimonios(buildRequestFilters(nextFilters, nextSearch)).then((data) => {
       setPatrimonios(data)
-      setPage(1)
+      setPage((currentPage) =>
+        Math.min(currentPage, Math.max(1, Math.ceil(data.length / ITEMS_PER_PAGE))),
+      )
     })
   }, [])
 
@@ -163,11 +168,12 @@ function HomeProvider({ children }) {
         appliedSearch,
         draftFilters,
         filters,
+        page,
         search,
         sortBy,
       }),
     )
-  }, [appliedSearch, draftFilters, filters, search, sortBy])
+  }, [appliedSearch, draftFilters, filters, page, search, sortBy])
 
   const filterOptions = useMemo(
     () => getFilterOptions(allPatrimonios),
@@ -194,6 +200,7 @@ function HomeProvider({ children }) {
   const hasNextPageGroup = pageNumbers[pageNumbers.length - 1] < totalPages
 
   function handleSearch() {
+    setPage(1)
     setAppliedSearch(search)
   }
 
@@ -252,15 +259,18 @@ function HomeProvider({ children }) {
     setSearch(nextSearch)
 
     if (!nextSearch) {
+      setPage(1)
       setAppliedSearch('')
     }
   }
 
   function handleApplyFilters() {
+    setPage(1)
     setFilters(draftFilters)
   }
 
   function handleClearFilters() {
+    setPage(1)
     setFilters(EMPTY_FILTERS)
     setDraftFilters(EMPTY_FILTERS)
   }

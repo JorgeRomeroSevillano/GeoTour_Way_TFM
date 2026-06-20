@@ -1,5 +1,258 @@
 .heritage-detail {
   flex: 1;
+  min-width: 0;
   min-height: calc(100svh - 110px);
+  padding: 12px 28px 18px;
   background: #f6f6f3;
+  color: #171715;
+}
+
+.heritage-detail--state {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.heritage-detail--state h1,
+.heritage-detail--state p {
+  margin: 0;
+}
+
+.heritage-detail__back {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 4px;
+  color: #171715;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.heritage-detail__overview {
+  display: grid;
+  grid-template-columns: minmax(360px, 1.8fr) minmax(200px, 0.55fr) minmax(290px, 0.8fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.heritage-detail__image-frame {
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../assets/fondo-plano-verano-sol_23-2149389091.avif");
+  background-color: #aeb8b5;
+  background-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+  border: 1px solid rgba(23, 23, 21, 0.18);
+  overflow: hidden;
+  align-self: stretch;
+}
+
+.heritage-detail__image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.heritage-detail__identity {
+  height: 430px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 7px 0;
+}
+
+.heritage-detail__identity h1 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.05;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.heritage-detail__location {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.heritage-detail__location-marker {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-top:-2.5px;
+  flex: 0 0 20px;
+  display: block;
+  background: #d92525;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+}
+
+.heritage-detail__location-marker::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.heritage-detail__climate-button {
+  padding: 5px 0 3px;
+  color: #245fbd;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.heritage-detail__quick-column {
+  height: 430px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.heritage-detail__favourite-button {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 12px;
+  color: #e65285;
+  background: #ffffff;
+  border: 1px solid rgba(23, 23, 21, 0.38);
+  border-radius: 5px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.heritage-detail__lower-content {
+  display: grid;
+  grid-template-columns: minmax(360px, calc(57.142857% - 25.142857px)) minmax(420px, 1fr);
+  gap: 22px;
+  align-items: stretch;
+  margin-top: 22px;
+}
+
+.heritage-detail__description {
+  min-width: 0;
+}
+
+.heritage-detail__description-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid rgba(23, 23, 21, 0.22);
+}
+
+.heritage-detail__description-header h2 {
+  margin: 0 6px 0 0;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.heritage-detail__description-header button {
+  min-height: 30px;
+  padding: 0 10px;
+  color: #245fbd;
+  background: #ffffff;
+  border: 1px solid rgba(36, 95, 189, 0.45);
+  border-radius: 3px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.heritage-detail__map {
+  min-width: 0;
+  margin-top: -170px;
+  overflow: hidden;
+  border: 1px solid rgba(23, 23, 21, 0.18);
+  border-radius: 5px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+.heritage-detail__map .map-shell,
+.heritage-detail__map .map--detail {
+  height: 100%;
+  min-height: 250px;
+}
+
+@media (max-width: 1120px) {
+  .heritage-detail__overview {
+    grid-template-columns: minmax(300px, 1.4fr) minmax(210px, 0.7fr);
+  }
+
+  .heritage-detail__lower-content {
+    grid-template-columns: minmax(300px, 1fr) minmax(420px, 1fr);
+  }
+
+  .heritage-detail__quick-column {
+    grid-column: 1 / -1;
+  }
+
+  .heritage-detail__identity,
+  .heritage-detail__quick-column {
+    height: auto;
+  }
+
+  .heritage-detail__map {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 820px) {
+  .heritage-detail {
+    padding: 10px 16px 18px;
+  }
+
+  .heritage-detail__overview,
+  .heritage-detail__lower-content {
+    grid-template-columns: 1fr;
+  }
+
+  .heritage-detail__image-frame {
+    height: 320px;
+  }
+
+  .heritage-detail__quick-column {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .heritage-detail__image-frame {
+    height: 240px;
+  }
+
+  .heritage-detail__identity h1 {
+    font-size: 25px;
+  }
 }

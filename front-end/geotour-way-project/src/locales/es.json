@@ -54,7 +54,58 @@
     "noResults": "Guarda lugares desde el listado o ajusta los filtros para ver tus favoritos."
   },
   "heritageDetail": {
-    "label": "Detalle de patrimonio"
+    "label": "Detalle de patrimonio",
+    "loading": "Cargando información del patrimonio...",
+    "loadError": "No se ha podido cargar el patrimonio",
+    "back": "Volver a la lista",
+    "description": "Descripción",
+    "readMore": "Leer más",
+    "readLess": "Leer menos",
+    "gastronomy": "Gastronomía",
+    "accommodation": "Alojamiento",
+    "quickInfo": "Información rápida",
+    "type": "Tipo",
+    "community": "Comunidad Autónoma",
+    "province": "Provincia",
+    "style": "Estilo",
+    "centuries": "Siglos",
+    "ecosystem": "Ecosistema",
+    "extension": "Extensión",
+    "types": {
+      "cultural": "Cultural",
+      "natural": "Natural"
+    },
+    "addFavourite": "Añadir a favoritos",
+    "removeFavourite": "Quitar de favoritos",
+    "yourRating": "Tu valoración",
+    "selectRating": "Selecciona una valoración",
+    "currentWeather": "Clima actual",
+    "saveRating": "Guardar valoración",
+    "unavailable": "No disponible",
+    "annualClimate": "Clima medio anual",
+    "climate": "Clima",
+    "closeClimate": "Cerrar clima",
+    "months": "Meses",
+    "maxMin": "Máxima / mínima (°C)",
+    "averageRainfall": "Precipitación media",
+    "noCoordinates": "No hay coordenadas disponibles para este patrimonio.",
+    "seasons": {
+      "invierno": "Invierno",
+      "primavera": "Primavera",
+      "verano": "Verano",
+      "otoño": "Otoño"
+    },
+    "seasonMonths": {
+      "invierno": "Enero - Marzo",
+      "primavera": "Abril - Junio",
+      "verano": "Julio - Septiembre",
+      "otoño": "Octubre - Diciembre"
+    }
+  },
+  "map": {
+    "measureDistance": "Medir distancia",
+    "showMiniMap": "Mostrar minimapa",
+    "hideMiniMap": "Ocultar minimapa"
   },
   "notFound": {
     "label": "Página no encontrada",

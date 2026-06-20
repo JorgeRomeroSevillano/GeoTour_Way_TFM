@@ -77,7 +77,7 @@ function RatingControl({ isUpdating, onUpdate, value }) {
               inputMode="decimal"
               placeholder="0 - 10"
               value={rating}
-              onChange={(event) => setRating(event.target.value)}
+              onChange={(event) => setRating(event.target.value === '' ? '' : String(Math.min(10, Math.max(0, Number(event.target.value)))))}
               aria-label={t('heritageDetail.selectRating')}
               autoFocus
               disabled={isUpdating}

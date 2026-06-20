@@ -10,17 +10,6 @@ import './styles/HeritageAccommodation.css'
 
 const ALL_RATES = [1, 2, 3]
 
-function getMapZoom(radius) {
-  if (radius <= 500) return 16
-  if (radius <= 1000) return 15
-  if (radius <= 2000) return 14
-  if (radius <= 5000) return 13
-  if (radius <= 10000) return 12
-  if (radius <= 20000) return 11
-  if (radius <= 40000) return 10
-  return 9
-}
-
 function HeritageAccommodation() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -70,6 +59,7 @@ function HeritageAccommodation() {
   }
 
   const center = [Number(patrimonio.latitud), Number(patrimonio.longitud)]
+  const isCultural = patrimonio.tipo?.toLowerCase() === 'cultural'
   const markers = [
     {
       id: `heritage-${patrimonio.id}`,
@@ -108,7 +98,7 @@ function HeritageAccommodation() {
           showMiniMap
           showScale
           variant="fullscreen"
-          zoom={getMapZoom(searchRadius)}
+          zoom={isCultural ? 15 : 13}
           zoomControlPosition="topright"
         />
         <AccommodationLegend

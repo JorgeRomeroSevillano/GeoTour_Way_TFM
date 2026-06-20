@@ -124,6 +124,16 @@
     "noResults": "No accommodation was found within the maximum search radius.",
     "noFilteredResults": "No accommodation is visible with the selected ratings."
   },
+  "gastronomy": {
+    "label": "Regional cuisine",
+    "back": "Go back",
+    "title": "Typical regional cuisine of",
+    "subtitle": "Discover the most representative dishes of the province's cuisine",
+    "loading": "Loading regional cuisine...",
+    "loadError": "Regional cuisine could not be loaded",
+    "noResultsTitle": "No dishes are available",
+    "noResults": "This province does not have gastronomic information available yet."
+  },
   "notFound": {
     "label": "Page not found",
     "title": "Page not found",

@@ -124,6 +124,16 @@
     "noResults": "No se encontraron alojamientos en el radio máximo de búsqueda.",
     "noFilteredResults": "No hay alojamientos visibles con las valoraciones seleccionadas."
   },
+  "gastronomy": {
+    "label": "Gastronomía regional",
+    "back": "Volver",
+    "title": "Gastronomía regional típica de",
+    "subtitle": "Descubre los platos más representativos de la gastronomía de la provincia",
+    "loading": "Cargando gastronomía regional...",
+    "loadError": "No se ha podido cargar la gastronomía",
+    "noResultsTitle": "No hay platos disponibles",
+    "noResults": "Esta provincia todavía no tiene información gastronómica disponible."
+  },
   "notFound": {
     "label": "Página no encontrada",
     "title": "Página no encontrada",

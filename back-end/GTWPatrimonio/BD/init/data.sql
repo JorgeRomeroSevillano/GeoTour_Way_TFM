@@ -1754,7 +1754,7 @@ VALUES
 
 ('Albarracín',
 'Albarracín es una de las villas medievales más espectaculares de España, situada entre montañas y rodeada por murallas. Sus calles estrechas, casas rojizas y fortalezas reflejan la influencia musulmana y cristiana. El conjunto urbano conserva una estética medieval prácticamente intacta.',
-'https://images.pexels.com/photos/19244399/pexels-photo-19244399.jpeg', 'cultural', 9.90, 'Albarracín', '44009', 44, 40.4074, -1.4429),
+'https://images.pexels.com/photos/19244399/pexels-photo-19244399.jpeg', 'cultural', 9.90, 'Albarracín', '44009', 44, 40.4054, -1.4440),
 
 ('Villa romana de La Olmeda',
 'La Villa romana de La Olmeda es uno de los yacimientos arqueológicos romanos más importantes de España. Destaca por sus mosaicos excepcionalmente conservados y las estructuras de una gran residencia rural romana. Refleja el nivel de riqueza y sofisticación de la Hispania romana tardía.',

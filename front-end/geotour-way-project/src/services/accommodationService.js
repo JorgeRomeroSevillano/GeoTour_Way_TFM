@@ -41,7 +41,7 @@ function getSearchRadii(heritageType, heritageName) {
 
   const isNatural = heritageType?.toLowerCase() === 'natural'
   const increment = isNatural ? 5000 : 2000
-  const firstRadius = isNatural ? 10000 : 7000
+  const firstRadius = isNatural ? 10000 : 8000
   const radii = [firstRadius]
 
   for (

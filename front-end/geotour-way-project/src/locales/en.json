@@ -18,6 +18,8 @@
     "subtitle": "Explore different destinations",
     "searchPlaceholder": "Search",
     "results": "results",
+    "resultSingular": "result",
+    "resultPlural": "results",
     "filters": "Filters",
     "filtersHelp": "Apply filters to find the places you are looking for",
     "closeFilters": "Close filters",
@@ -49,6 +51,8 @@
     "title": "Your favourites list",
     "subtitle": "Here is your list of favourite places",
     "savedPlaces": "saved places",
+    "savedPlaceSingular": "saved place",
+    "savedPlacePlural": "saved places",
     "clearList": "Clear favourites list",
     "noResultsTitle": "No visible favourites",
     "noResults": "Save places from the list or adjust the filters to see your favourites."

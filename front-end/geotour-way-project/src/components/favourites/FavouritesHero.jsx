@@ -8,6 +8,10 @@ function FavouritesHero() {
   const navigate = useNavigate()
   const { savedCount } = useHeritageList()
   const { t } = useLanguage()
+  const savedPlacesLabel =
+    savedCount === 1
+      ? t('favourites.savedPlaceSingular')
+      : t('favourites.savedPlacePlural')
 
   return (
     <header className="favourites__hero">
@@ -24,7 +28,7 @@ function FavouritesHero() {
         <p>{t('favourites.subtitle')}</p>
       </div>
       <p className="favourites__saved-count">
-        {savedCount} {t('favourites.savedPlaces')}
+        {savedCount} {savedPlacesLabel}
       </p>
     </header>
   )

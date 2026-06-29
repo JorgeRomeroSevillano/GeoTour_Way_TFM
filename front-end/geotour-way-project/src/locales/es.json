@@ -18,6 +18,8 @@
     "subtitle": "Explora diferentes destinos",
     "searchPlaceholder": "Buscar",
     "results": "resultados",
+    "resultSingular": "resultado",
+    "resultPlural": "resultados",
     "filters": "Filtros",
     "filtersHelp": "Aplica filtros para encontrar los lugares que buscas",
     "closeFilters": "Cerrar filtros",
@@ -49,6 +51,8 @@
     "title": "Tu lista de favoritos",
     "subtitle": "Aquí tienes tu lista de lugares favoritos",
     "savedPlaces": "lugares guardados",
+    "savedPlaceSingular": "lugar guardado",
+    "savedPlacePlural": "lugares guardados",
     "clearList": "Vaciar lista de favoritos",
     "noResultsTitle": "No tienes favoritos visibles",
     "noResults": "Guarda lugares desde el listado o ajusta los filtros para ver tus favoritos."

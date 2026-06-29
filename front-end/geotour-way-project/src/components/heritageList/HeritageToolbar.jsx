@@ -12,11 +12,13 @@ function HeritageToolbar() {
     totalResults,
   } = useHeritageList()
   const { t } = useLanguage()
+  const resultsLabel =
+    totalResults === 1 ? t('home.resultSingular') : t('home.resultPlural')
 
   return (
     <div className="home__toolbar">
       <p className="home__results">
-        {totalResults} {t('home.results')}
+        {totalResults} {resultsLabel}
       </p>
       <div className="home__toolbar-actions">
         <button

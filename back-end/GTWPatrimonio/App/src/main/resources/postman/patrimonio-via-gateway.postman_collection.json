@@ -49,7 +49,52 @@
           ]
         },
         "description": "POST al Gateway. El Gateway transforma la peticion en GET /patrimonios dentro del microservicio."
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonios - filtro multiple por ids",
@@ -76,7 +121,57 @@
           ]
         },
         "description": "Permite pedir varios patrimonios por id en una sola llamada."
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});",
+              "",
+              "pm.test('Solo devuelve los ids solicitados', function () {",
+              "  const expectedIds = [1, 2];",
+              "  data.forEach(function (item) { pm.expect(expectedIds).to.include(item.id); });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonios - filtrar por un id",
@@ -102,7 +197,57 @@
             "patrimonios"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});",
+              "",
+              "pm.test('Solo devuelve el id solicitado', function () {",
+              "  const expectedId = Number(pm.variables.get('patrimonio_id'));",
+              "  data.forEach(function (item) { pm.expect(item.id).to.eql(expectedId); });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonios - filtrar por nombre",
@@ -128,7 +273,56 @@
             "patrimonios"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});",
+              "",
+              "pm.test('El nombre contiene el filtro solicitado', function () {",
+              "  data.forEach(function (item) { pm.expect(containsIgnoreCase(item.nombre, 'alhambra')).to.be.true; });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonios - filtrar por tipo",
@@ -154,7 +348,56 @@
             "patrimonios"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});",
+              "",
+              "pm.test('Solo devuelve patrimonios del tipo solicitado', function () {",
+              "  data.forEach(function (item) { pm.expect(String(item.tipo).toLowerCase()).to.eql('cultural'); });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonios - filtrar por valoracion minima",
@@ -180,7 +423,56 @@
             "patrimonios"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});",
+              "",
+              "pm.test('Solo devuelve patrimonios con valoracion minima', function () {",
+              "  data.forEach(function (item) { pm.expect(Number(item.valoracion)).to.be.at.least(8); });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonios - filtrar por una localidad",
@@ -206,7 +498,56 @@
             "patrimonios"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});",
+              "",
+              "pm.test('La localidad coincide con el filtro', function () {",
+              "  data.forEach(function (item) { pm.expect(containsIgnoreCase(item.localidad, 'Granada')).to.be.true; });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonios - filtrar por una provincia",
@@ -232,7 +573,56 @@
             "patrimonios"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});",
+              "",
+              "pm.test('La provincia coincide con el filtro', function () {",
+              "  data.forEach(function (item) { pm.expect(containsIgnoreCase(item.provincia.nombre, 'Granada')).to.be.true; });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonios - filtrar por una comunidad",
@@ -258,7 +648,56 @@
             "patrimonios"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});",
+              "",
+              "pm.test('La comunidad coincide con el filtro', function () {",
+              "  data.forEach(function (item) { pm.expect(containsIgnoreCase(item.provincia.comunidad, 'Andaluc')).to.be.true; });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonios - filtro multiple por localidades",
@@ -284,7 +723,57 @@
             "patrimonios"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});",
+              "",
+              "pm.test('La localidad coincide con alguno de los filtros', function () {",
+              "  const expected = ['Granada', 'Sevilla'];",
+              "  data.forEach(function (item) { pm.expect(anyContainsIgnoreCase(item.localidad, expected)).to.be.true; });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonios - filtro multiple por provincias",
@@ -310,7 +799,57 @@
             "patrimonios"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});",
+              "",
+              "pm.test('La provincia coincide con alguno de los filtros', function () {",
+              "  const expected = ['Granada', 'Sevilla'];",
+              "  data.forEach(function (item) { pm.expect(anyContainsIgnoreCase(item.provincia.nombre, expected)).to.be.true; });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonios - filtro multiple por comunidades",
@@ -337,7 +876,57 @@
           ]
         },
         "description": "Busca comunidades que contengan cualquiera de los textos indicados."
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});",
+              "",
+              "pm.test('La comunidad coincide con alguno de los filtros', function () {",
+              "  const expected = ['Andaluc', 'Castilla'];",
+              "  data.forEach(function (item) { pm.expect(anyContainsIgnoreCase(item.provincia.comunidad, expected)).to.be.true; });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonios - filtro combinado",
@@ -363,7 +952,61 @@
             "patrimonios"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('La respuesta es una lista de patrimonios', function () {",
+              "  pm.expect(data).to.be.an('array');",
+              "});",
+              "",
+              "pm.test('Cada patrimonio tiene la estructura esperada', function () {",
+              "  data.forEach(expectPatrimonioGeneral);",
+              "});",
+              "",
+              "pm.test('Cumple todos los filtros combinados', function () {",
+              "  data.forEach(function (item) {",
+              "    pm.expect(String(item.tipo).toLowerCase()).to.eql('cultural');",
+              "    pm.expect(Number(item.valoracion)).to.be.at.least(8);",
+              "    pm.expect(anyContainsIgnoreCase(item.provincia.nombre, ['Granada', 'Sevilla'])).to.be.true;",
+              "    pm.expect(containsIgnoreCase(item.provincia.comunidad, 'Andaluc')).to.be.true;",
+              "  });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonio - detalle por id",
@@ -390,7 +1033,60 @@
             "{{patrimonio_id}}"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('Devuelve el patrimonio solicitado', function () {",
+              "  expectPatrimonioGeneral(data);",
+              "  pm.expect(data.id).to.eql(Number(pm.variables.get('patrimonio_id')));",
+              "});",
+              "",
+              "pm.test('Incluye el bloque de detalle segun el tipo', function () {",
+              "  pm.expect(data).to.have.property('cultural');",
+              "  pm.expect(data).to.have.property('natural');",
+              "  if (String(data.tipo).toLowerCase() === 'cultural') {",
+              "    pm.expect(data.cultural).to.be.an('object');",
+              "  }",
+              "  if (String(data.tipo).toLowerCase() === 'natural') {",
+              "    pm.expect(data.natural).to.be.an('object');",
+              "  }",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Provincia - gastronomia",
@@ -418,7 +1114,39 @@
             "gastronomia"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('Incluye la provincia solicitada', function () {",
+              "  pm.expect(data).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(data.provincia).to.have.property('id').that.eql(Number(pm.variables.get('provincia_id')));",
+              "  pm.expect(data.provincia).to.have.property('nombre').that.is.a('string');",
+              "});",
+              "",
+              "pm.test('Incluye la lista platos', function () {",
+              "  pm.expect(data).to.have.property('platos').that.is.an('array');",
+              "  data.platos.forEach(function (item) {",
+              "    pm.expect(item).to.be.an('object');",
+              "    pm.expect(item).to.have.property('id').that.is.a('number');",
+              "    pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Provincia - clima",
@@ -446,7 +1174,45 @@
             "clima"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('Incluye la provincia solicitada', function () {",
+              "  pm.expect(data).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(data.provincia).to.have.property('id').that.eql(Number(pm.variables.get('provincia_id')));",
+              "  pm.expect(data.provincia).to.have.property('nombre').that.is.a('string');",
+              "});",
+              "",
+              "pm.test('Incluye la lista clima', function () {",
+              "  pm.expect(data).to.have.property('clima').that.is.an('array');",
+              "  data.clima.forEach(function (item) {",
+              "    pm.expect(item).to.be.an('object');",
+              "    pm.expect(item).to.have.property('id').that.is.a('number');",
+              "    pm.expect(item).to.have.property('estacion').that.is.a('string');",
+              "    pm.expect(item).to.have.property('temMin');",
+              "    pm.expect(item).to.have.property('temMax');",
+              "    pm.expect(item).to.have.property('precipitacionMedia');",
+              "    pm.expect(Number(item.temMin)).to.not.be.NaN;",
+              "    pm.expect(Number(item.temMax)).to.not.be.NaN;",
+              "    pm.expect(Number(item.precipitacionMedia)).to.not.be.NaN;",
+              "  });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Patrimonio - actualizar valoracion",
@@ -475,7 +1241,55 @@
           ]
         },
         "description": "POST al Gateway. El Gateway transforma la peticion en PATCH /patrimonios/{id}/valoracion y envia body.valoracion al microservicio."
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "function expectPatrimonioGeneral(item) {",
+              "  pm.expect(item).to.be.an('object');",
+              "  pm.expect(item).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item).to.have.property('tipo').that.is.a('string');",
+              "  pm.expect(item).to.have.property('valoracion');",
+              "  pm.expect(Number(item.valoracion)).to.not.be.NaN;",
+              "  pm.expect(item).to.have.property('localidad').that.is.a('string');",
+              "  pm.expect(item).to.have.property('provincia').that.is.an('object');",
+              "  pm.expect(item.provincia).to.have.property('id').that.is.a('number');",
+              "  pm.expect(item.provincia).to.have.property('nombre').that.is.a('string');",
+              "  pm.expect(item.provincia).to.have.property('comunidad').that.is.a('string');",
+              "}",
+              "function containsIgnoreCase(value, expected) {",
+              "  return String(value || '').toLowerCase().includes(String(expected).toLowerCase());",
+              "}",
+              "function anyContainsIgnoreCase(value, expectedValues) {",
+              "  return expectedValues.some(function (expected) { return containsIgnoreCase(value, expected); });",
+              "}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('Actualiza y devuelve el patrimonio solicitado', function () {",
+              "  expectPatrimonioGeneral(data);",
+              "  pm.expect(data.id).to.eql(Number(pm.variables.get('patrimonio_id')));",
+              "});",
+              "",
+              "pm.test('La valoracion actualizada es numerica y esta en rango valido', function () {",
+              "  const valoracion = Number(data.valoracion);",
+              "  pm.expect(valoracion).to.be.at.least(0);",
+              "  pm.expect(valoracion).to.be.at.most(10);",
+              "});"
+            ]
+          }
+        }
+      ]
     }
   ]
 }

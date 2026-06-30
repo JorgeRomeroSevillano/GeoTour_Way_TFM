@@ -21,33 +21,6 @@
   ],
   "item": [
     {
-      "name": "Favoritos - listar ids",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {},\n  \"body\": null\n}"
-        },
-        "url": {
-          "raw": "{{gateway_url}}/{{service_path}}/favoritos",
-          "host": [
-            "{{gateway_url}}"
-          ],
-          "path": [
-            "{{service_path}}",
-            "favoritos"
-          ]
-        },
-        "description": "Devuelve la lista de ids de patrimonio guardados como favoritos."
-      }
-    },
-    {
       "name": "Favoritos - anadir id patrimonio",
       "request": {
         "method": "POST",
@@ -72,7 +45,84 @@
           ]
         },
         "description": "Antes de guardar, Favoritos consulta Patrimonio con GET /patrimonios?ids={idPatrimonio}."
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('Devuelve la estructura de favoritos', function () {",
+              "  pm.expect(data).to.be.an('object');",
+              "  pm.expect(data).to.have.property('idsPatrimonio').that.is.an('array');",
+              "  data.idsPatrimonio.forEach(function (id) { pm.expect(id).to.be.a('number'); });",
+              "});",
+              "",
+              "pm.test('La lista contiene el patrimonio anadido', function () {",
+              "  pm.expect(data.idsPatrimonio).to.include(Number(pm.variables.get('id_patrimonio')));",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Favoritos - listar ids",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"targetMethod\": \"GET\",\n  \"queryParams\": {},\n  \"body\": null\n}"
+        },
+        "url": {
+          "raw": "{{gateway_url}}/{{service_path}}/favoritos",
+          "host": [
+            "{{gateway_url}}"
+          ],
+          "path": [
+            "{{service_path}}",
+            "favoritos"
+          ]
+        },
+        "description": "Devuelve la lista de ids de patrimonio guardados como favoritos."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('Devuelve la estructura de favoritos', function () {",
+              "  pm.expect(data).to.be.an('object');",
+              "  pm.expect(data).to.have.property('idsPatrimonio').that.is.an('array');",
+              "  data.idsPatrimonio.forEach(function (id) { pm.expect(id).to.be.a('number'); });",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Favoritos - eliminar id patrimonio",
@@ -99,7 +149,34 @@
             "{{id_patrimonio}}"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('Devuelve la estructura de favoritos', function () {",
+              "  pm.expect(data).to.be.an('object');",
+              "  pm.expect(data).to.have.property('idsPatrimonio').that.is.an('array');",
+              "  data.idsPatrimonio.forEach(function (id) { pm.expect(id).to.be.a('number'); });",
+              "});",
+              "",
+              "pm.test('La lista no contiene el patrimonio eliminado', function () {",
+              "  pm.expect(data.idsPatrimonio).to.not.include(Number(pm.variables.get('id_patrimonio')));",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "Favoritos - eliminar todos",
@@ -125,7 +202,34 @@
             "favoritos"
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "function parseJson() {\n  pm.test('La respuesta es JSON valido', function () {\n    pm.response.to.have.jsonBody();\n  });\n  return pm.response.json();\n}",
+              "",
+              "pm.test('Codigo HTTP 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const data = parseJson();",
+              "",
+              "pm.test('Devuelve la estructura de favoritos', function () {",
+              "  pm.expect(data).to.be.an('object');",
+              "  pm.expect(data).to.have.property('idsPatrimonio').that.is.an('array');",
+              "  data.idsPatrimonio.forEach(function (id) { pm.expect(id).to.be.a('number'); });",
+              "});",
+              "",
+              "pm.test('La lista queda vacia', function () {",
+              "  pm.expect(data.idsPatrimonio).to.have.length(0);",
+              "});"
+            ]
+          }
+        }
+      ]
     }
   ]
 }
